@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7648176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7648173}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7648176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9422006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 9422003}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9422006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139700048}
   m_Layer: 5
-  m_Name: ForwardControl (1)
+  m_Name: ForwardControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +592,7 @@ GameObject:
   - component: {fileID: 164098844}
   - component: {fileID: 164098843}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RightText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,7 +901,7 @@ GameObject:
   - component: {fileID: 226997639}
   - component: {fileID: 226997638}
   m_Layer: 5
-  m_Name: BackBtn
+  m_Name: BackwardBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -946,7 +970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 226997639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 226997636}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &226997639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,7 +1033,7 @@ GameObject:
   - component: {fileID: 277178768}
   - component: {fileID: 277178767}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1151,7 +1187,7 @@ GameObject:
   - component: {fileID: 292769229}
   - component: {fileID: 292769228}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BackwardText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1230,7 +1266,7 @@ GameObject:
   - component: {fileID: 307218957}
   - component: {fileID: 307218956}
   m_Layer: 5
-  m_Name: Text
+  m_Name: InventoryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1873,7 +1909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610759382}
   m_Layer: 5
-  m_Name: PauseControl (1)
+  m_Name: PauseControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1990,7 +2026,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2084819298}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
@@ -2289,7 +2325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 768832424}
   m_Layer: 5
-  m_Name: RightControl (1)
+  m_Name: RightControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2309,7 +2345,7 @@ RectTransform:
   - {fileID: 1136321062}
   - {fileID: 775661065}
   m_Father: {fileID: 936648960}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2398,7 +2434,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 775661067}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 775661064}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &775661067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2621,7 +2669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852950211}
   m_Layer: 5
-  m_Name: SwapItemControl (1)
+  m_Name: SwapItemControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2682,10 +2730,10 @@ RectTransform:
   m_Father: {fileID: 2084819297}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -57.324707, y: 222}
-  m_SizeDelta: {x: -1362.9, y: -957.4064}
+  m_SizeDelta: {x: 557.1, y: 122.59363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930765602
 MonoBehaviour:
@@ -2756,8 +2804,8 @@ RectTransform:
   - {fileID: 139700048}
   - {fileID: 1449482328}
   - {fileID: 2043124571}
-  - {fileID: 2105942324}
   - {fileID: 768832424}
+  - {fileID: 2105942324}
   - {fileID: 610759382}
   - {fileID: 1268320204}
   - {fileID: 1040171763}
@@ -2998,7 +3046,7 @@ GameObject:
   - component: {fileID: 965470102}
   - component: {fileID: 965470101}
   m_Layer: 5
-  m_Name: Text
+  m_Name: LeftText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3075,7 +3123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040171763}
   m_Layer: 5
-  m_Name: InventoryControl (1)
+  m_Name: InventoryControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3250,7 +3298,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1122556928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1122556925}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1122556928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3402,8 +3462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -468.53003, y: 662.7831}
-  m_SizeDelta: {x: 160.114, y: 67.1574}
+  m_AnchoredPosition: {x: -349.59, y: 661.41}
+  m_SizeDelta: {x: 398, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246324792
 MonoBehaviour:
@@ -3432,7 +3492,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 140
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3604,7 +3664,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1262086525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1262086522}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1262086525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3653,7 +3725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268320204}
   m_Layer: 5
-  m_Name: BoostControl (1)
+  m_Name: BoostControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3692,7 +3764,7 @@ GameObject:
   - component: {fileID: 1303005099}
   - component: {fileID: 1303005098}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BoostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3750,7 +3822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shift
+  m_Text: LeftShift
 --- !u!222 &1303005099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3771,7 +3843,7 @@ GameObject:
   - component: {fileID: 1343453485}
   - component: {fileID: 1343453484}
   m_Layer: 5
-  m_Name: Text
+  m_Name: JumpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4043,8 +4115,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.21997, y: -345.755}
-  m_SizeDelta: {x: 232.8108, y: 67.1574}
+  m_AnchoredPosition: {x: 242.81, y: -357.76}
+  m_SizeDelta: {x: 398, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1388945986
 MonoBehaviour:
@@ -4073,7 +4145,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 140
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4254,7 +4326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449482328}
   m_Layer: 5
-  m_Name: BackwardControl (1)
+  m_Name: BackwardControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4671,10 +4743,10 @@ RectTransform:
   m_Father: {fileID: 2084819297}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -540}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1613257557
 MonoBehaviour:
@@ -4829,7 +4901,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1693322994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1693322991}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1693322994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5145,7 +5229,7 @@ GameObject:
   - component: {fileID: 1830055561}
   - component: {fileID: 1830055560}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ForwardText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5377,7 +5461,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2084819298}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: SetSoundVolume
         m_Mode: 0
@@ -5401,7 +5485,7 @@ GameObject:
   - component: {fileID: 1980295041}
   - component: {fileID: 1980295040}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SwapItemText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5478,7 +5562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2043124571}
   m_Layer: 5
-  m_Name: LeftControl (1)
+  m_Name: LeftControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5587,7 +5671,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2064220346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2064220343}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2064220346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5743,6 +5839,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 1f8bc04c3765fc441aa4eabda4622a25, type: 2}
+  forward: {fileID: 1830055560}
+  backward: {fileID: 292769228}
+  left: {fileID: 965470101}
+  right: {fileID: 164098843}
+  jump: {fileID: 1343453484}
+  pause: {fileID: 277178767}
+  boost: {fileID: 1303005098}
+  inventory: {fileID: 307218956}
+  swap: {fileID: 1980295040}
+  buttons:
+  - {fileID: 7648175}
+  - {fileID: 226997638}
+  - {fileID: 1122556927}
+  - {fileID: 775661066}
+  - {fileID: 1693322993}
+  - {fileID: 2122867922}
+  - {fileID: 2064220345}
+  - {fileID: 1262086524}
+  - {fileID: 9422005}
 --- !u!1 &2105942323
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,7 +5868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2105942324}
   m_Layer: 5
-  m_Name: JumpControl (1)
+  m_Name: JumpControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5773,7 +5888,7 @@ RectTransform:
   - {fileID: 192268094}
   - {fileID: 1693322992}
   m_Father: {fileID: 936648960}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5862,7 +5977,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2122867923}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084819298}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+        m_MethodName: ChangeKey
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2122867920}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2122867923
 MonoBehaviour:
   m_ObjectHideFlags: 0
