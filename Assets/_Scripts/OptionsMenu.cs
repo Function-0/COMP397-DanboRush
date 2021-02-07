@@ -14,18 +14,20 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public AudioSource clickSound;
 
     private Dictionary<string, KeyCode> keyMapping = new Dictionary<string, KeyCode>();
     public Text forward, backward, left, right, jump, pause, boost, inventory, swap;
     private GameObject currentKey;
 
     public Button[] buttons;
+    public Toggle invertXAxis, invertYAxis;
+    public static bool invertXState, invertYState = false;
 
     // Use this for initialization
     void Start () {
         setBtnSelectedColor();
 
-        Debug.Log(buttons.Length);
         // Add key mapping
         keyMapping.Add("Forward", KeyCode.W);
         keyMapping.Add("Backward", KeyCode.S);
@@ -76,9 +78,17 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
-    // Click event listener
+    // Click event listener for key mappings
     public void ChangeKey(GameObject clickedKey) {
+        playClickSoundEffect();
         currentKey = clickedKey;
+    }
+
+    // Click event listener for toggles (InvertXAxis and InvertYAxis)
+    public void ToggleInvertAxis() {
+        playClickSoundEffect();
+        invertXState = invertXAxis.isOn;
+        invertYState = invertYAxis.isOn;
     }
 
     public void SetMusicVolume(float volume) {
@@ -88,5 +98,9 @@ public class OptionsMenu : MonoBehaviour
     public void SetSoundVolume(float volume) {
         audioMixer.SetFloat("SoundVolume", volume);
     }
+
+    public void playClickSoundEffect() {
+        clickSound.Play();
+    } 
 
 }
