@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public AudioSource clickSound;
@@ -16,24 +16,24 @@ public class MainMenu : MonoBehaviour
         clickSound.Play();
     }
 
-    //Method for the new game button SceneManager.GetActiveScene().buildIndex + 1
-    public void NewGame()
+    //Method for the Restart button SceneManager.GetActiveScene().buildIndex + 1
+    public void Restart()
     {
         SoundEffect();
         SceneManager.LoadScene("Prototype_1");
     }
 
-    //Method for options
-    public void Options()
+    //Method for Main Menu
+    public void MainMenu()
     {
         SoundEffect();
-        SceneManager.LoadScene("OptionsMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     //Method For Quit
     public void QuitGame()
     {
-        
+        SoundEffect();
         Debug.Log("Quit");
         Application.Quit();
     }

@@ -6,26 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/_Scenes/TitleScreen.unity
-    guid: a48b7e4fec71319459fae5113d58baff
-  - enabled: 1
-    path: Assets/_Scenes/MainMenu.unity
-    guid: 779020f1f27da0040b356d08c1cac6fb
-  - enabled: 1
-    path: Assets/_Scenes/OptionsMenu.unity
-    guid: afa479e84f06e1f41be574b4976e4b6e
-  - enabled: 1
-    path: Assets/_Scenes/PauseMenu.unity
-    guid: 353ec6067d3928e4e9f17bde696c8ca5
-=======
-    path: Assets/_Scenes/MainMenu.unity
-    guid: 779020f1f27da0040b356d08c1cac6fb
-  - enabled: 1
     path: Assets/_Scenes/Prototype_1.unity
     guid: b2fa8882363c4644b93046de18bcbf19
-  - enabled: 1
-    path: Assets/_Scenes/OptionsMenu.unity
-    guid: afa479e84f06e1f41be574b4976e4b6e
->>>>>>> Stashed changes
   m_configObjects: {}
