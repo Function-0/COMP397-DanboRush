@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public AudioSource clickSound;
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
 
@@ -28,37 +29,48 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
+        playClickSoundEffect();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
 
     void Pause() {
+        playClickSoundEffect();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void Restart() {
+        playClickSoundEffect();
         Time.timeScale = 1f;
         SceneManager.LoadScene("TitleScreen");
     }
 
     public void Save() {
+        playClickSoundEffect();
         Debug.Log("Save...");
     }
 
     public void Load() {
+        playClickSoundEffect();
         Debug.Log("Load...");
     }
 
     public void LoadOptionsMenu() {
+        playClickSoundEffect();
         Time.timeScale = 1f;
         SceneManager.LoadScene("OptionsMenu");
     }
 
     public void Quit() {
-        Debug.Log("Quit....");
+        playClickSoundEffect();
+        SceneManager.LoadScene("ExitScreen");
         Application.Quit();
     }
+
+    public void playClickSoundEffect() {
+        clickSound.Play();
+    } 
 }

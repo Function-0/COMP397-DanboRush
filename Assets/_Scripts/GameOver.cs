@@ -34,7 +34,7 @@ public class GameOver : MonoBehaviour
     public void QuitGame()
     {
         SoundEffect();
-        Debug.Log("Quit");
+        SceneManager.LoadScene("ExitScreen");
         Application.Quit();
     }
 }

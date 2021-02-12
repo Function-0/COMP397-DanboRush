@@ -33,8 +33,7 @@ public class MainMenu : MonoBehaviour
     //Method For Quit
     public void QuitGame()
     {
-        
-        Debug.Log("Quit");
+        SceneManager.LoadScene("ExitScreen");
         Application.Quit();
     }
 }
