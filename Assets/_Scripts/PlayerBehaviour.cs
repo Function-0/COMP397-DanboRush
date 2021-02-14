@@ -14,6 +14,8 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask groundMask;
     public Vector3 velocity;
     public bool isGrounded;
+    
+    private float jumpForce = 2.0f; 
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +56,18 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+    }
+
+    // Detect collider
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        switch(hit.gameObject.tag) {
+            case "JumpFan":
+                Debug.Log("Collide on a JumpFan");
+                velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity * jumpForce);
+                hit.gameObject.GetComponent<AudioSource>().Play();  // Play sound effect
+                break;
+            default:
+                break;
+        }
     }
 }
