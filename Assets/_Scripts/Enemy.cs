@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
 	public float lookRadius = 10f;
 
+	public float health = 50f; // enemy hp
+
 	Transform target;
 	NavMeshAgent agent;
 
@@ -89,4 +91,20 @@ public class Enemy : MonoBehaviour
 		Gizmos.DrawWireSphere(transform.position, lookRadius);
 	}
 
+
+	// killing enemy
+
+	public void TakeDamage(float amount)
+	{
+		health -= amount;
+		if (health <= 0f)
+		{
+			Die();
+		}
+	}
+
+	void Die()
+	{
+		Destroy(gameObject);
+	}
 }

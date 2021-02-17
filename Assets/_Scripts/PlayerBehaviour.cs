@@ -5,17 +5,20 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public CharacterController controller;
-    public float maxSpeed = 10.0f;
-    public float gravity = -30.0f;
-    public float jumpHeight = 3.0f;
+    public float maxSpeed = 3000.0f;
+    public float gravity = -70.0f;
+    public float jumpHeight = 25.0f;
 
     public Transform groundCheck;
     public float groundRadius = 0.5f;
     public LayerMask groundMask;
     public Vector3 velocity;
     public bool isGrounded;
-    
-    private float jumpForce = 2.0f; 
+
+    private float jumpForce = 5f;
+
+    public GameObject bulletPrefab;
+    public Camera playerCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,13 @@ public class PlayerBehaviour : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject bulletObject = Instantiate(bulletPrefab);
+            bulletObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * -20 + playerCamera.transform.up * -2 + playerCamera.transform.right * -3;
+            bulletObject.transform.forward = playerCamera.transform.forward;
+        }
     }
 
     void OnDrawGizmos()
