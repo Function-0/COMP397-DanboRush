@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 161920785}
   - component: {fileID: 161920784}
   - component: {fileID: 161920783}
+  - component: {fileID: 161920787}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -430,6 +431,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &161920787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161920782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cccb453b9ba414c9eefe3db4584e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 1f8bc04c3765fc441aa4eabda4622a25, type: 2}
+  clickSound: {fileID: 300484261}
 --- !u!1 &300484259
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +691,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1368236886459583162, guid: 1f8bc04c3765fc441aa4eabda4622a25, type: 2}
   m_audioClip: {fileID: 8300000, guid: d9cfab098c9dda546b60c678cabee7e1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -843,9 +858,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 300484261}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 161920787}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
