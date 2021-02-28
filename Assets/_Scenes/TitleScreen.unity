@@ -440,7 +440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 161920782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94cccb453b9ba414c9eefe3db4584e37, type: 3}
+  m_Script: {fileID: 11500000, guid: cbdb2773d6301a64a9708532b6c2a3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 1f8bc04c3765fc441aa4eabda4622a25, type: 2}
@@ -859,8 +859,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 161920787}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGame
+        m_TargetAssemblyTypeName: TitleScreen, Assembly-CSharp
+        m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
