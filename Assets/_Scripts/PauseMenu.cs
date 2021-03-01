@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-07 16:48:00 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-02-15 00:21:38
+ * @Last Modified time: 2021-02-28 19:29:51
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public PlayerBehaviour player;
+    public List<MonoBehaviour> scripts;
     public AudioSource clickSound;
     public static bool isPaused = false;
     public GameObject pauseCanvas;
@@ -31,6 +33,10 @@ public class PauseMenu : MonoBehaviour
             else {
                 Pause();
             }
+        } else if (Input.GetKeyDown(KeyCode.P)) {  // TODO: temp for testing only, should remove after solving the button issue on PlayScene
+            Save();
+        } else if (Input.GetKeyDown(KeyCode.O)) {  // TODO: temp for testing only, should remove after solving the button issue on PlayScene
+            Load();
         }
     }
 
@@ -39,6 +45,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+
+        foreach(var script in scripts) {
+            script.enabled = !isPaused;
+        }
     }
 
     void Pause() {
@@ -46,6 +56,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        foreach(var script in scripts) {
+            script.enabled = !isPaused;
+        }
     }
 
     public void Restart() {
@@ -57,11 +71,19 @@ public class PauseMenu : MonoBehaviour
     public void Save() {
         playClickSoundEffect();
         Debug.Log("Save...");
+        SaveSystem.SavePlayer(player);
     }
 
     public void Load() {
         playClickSoundEffect();
         Debug.Log("Load...");
+        
+        PlayerData data = SaveSystem.LoadPlayer();
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        player.transform.position = position;
     }
 
     public void LoadOptionsMenu() {
