@@ -10,8 +10,14 @@ public class GunController : MonoBehaviour
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
+    public AudioSource bullet_sound;
 
     private float nextTimeToFire = 0f;
+
+    private void Start()
+    {
+        bullet_sound = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,7 +31,7 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
-
+        bullet_sound.Play();
         muzzleFlash.Play();
 
         RaycastHit hit;
