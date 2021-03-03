@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-07 16:48:00 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-02-28 19:29:51
+ * @Last Modified time: 2021-03-03 00:48:01
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -33,10 +33,6 @@ public class PauseMenu : MonoBehaviour
             else {
                 Pause();
             }
-        } else if (Input.GetKeyDown(KeyCode.P)) {  // TODO: temp for testing only, should remove after solving the button issue on PlayScene
-            Save();
-        } else if (Input.GetKeyDown(KeyCode.O)) {  // TODO: temp for testing only, should remove after solving the button issue on PlayScene
-            Load();
         }
     }
 
@@ -45,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         foreach(var script in scripts) {
             script.enabled = !isPaused;
@@ -54,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     void Pause() {
         playClickSoundEffect();
         pauseMenuUI.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         isPaused = true;
 
@@ -84,6 +82,8 @@ public class PauseMenu : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         player.transform.position = position;
+        
+        Resume();
     }
 
     public void LoadOptionsMenu() {
