@@ -20,6 +20,11 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject bulletPrefab;
     public Camera playerCamera;
 
+
+    [Header("MiniMap")]
+    public GameObject miniMap;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +64,13 @@ public class PlayerBehaviour : MonoBehaviour
             GameObject bulletObject = Instantiate(bulletPrefab);
             bulletObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * -20 + playerCamera.transform.up * -2 + playerCamera.transform.right * -3;
             bulletObject.transform.forward = playerCamera.transform.forward;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            // toggle the MiniMap on/off
+            miniMap.SetActive(!miniMap.activeInHierarchy);
         }
     }
 
