@@ -24,6 +24,13 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("MiniMap")]
     public GameObject miniMap;
 
+    [Header("HealthBar")]
+    public HealthBarScreenSpaceController healthBar;
+
+    [Header("Player Abilities")]
+    [Range(0, 100)]
+    public float health = 100;
+
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +85,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        healthBar.TakeDamage(damage);
+        if (health < 0)
+        {
+            health = 0;
+        }
     }
 
     // Detect collider

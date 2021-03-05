@@ -10,9 +10,10 @@ public class GunController : MonoBehaviour
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
+    private float nextTimeToFire = 0f;
+
     public AudioSource bullet_sound;
 
-    private float nextTimeToFire = 0f;
 
     private void Start()
     {

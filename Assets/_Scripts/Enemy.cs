@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
 	public float lookRadius = 10f;
 
-	public float health = 50f; // enemy hp
+	public float health = 100f; // enemy hp
 
 	Transform target;
 	NavMeshAgent agent;
@@ -19,14 +19,20 @@ public class Enemy : MonoBehaviour
 
 	public GameObject player;
 
-	public GameObject ThrowBoxPrefab;
-	private GameObject ThrowBox;
+//	public GameObject ThrowBoxPrefab;
+	//public Camera playerCamera;
+	//private GameObject ThrowBox;
+
+	public PlayerBehaviour playerBehaviour;
+
+	public HealthBarScreenSpaceController healthBar;
 
 	void Start()
 	{
 		player = GameObject.Find("Amazon danbo");
 		target = player.transform;
 		agent = GetComponent<NavMeshAgent>();
+		playerBehaviour = FindObjectOfType<PlayerBehaviour>();
 		//_alive = true;
 		//combatManager = GetComponent<CharacterCombat>();
 	}
@@ -38,65 +44,28 @@ public class Enemy : MonoBehaviour
 
 		// If inside the radius
 		if (distance <= lookRadius)
-		{ 
+		{
 			// Move towards the player
 			agent.SetDestination(target.position);
 
-            //if (distance <= agent.stoppingDistance)
-            //{
-            //    // Attack
-            //    //combatManager.Attack(Player.instance.playerStats);
-            //    //FaceTarget();
-            //}
-        }
-
-		//Ray ray = new Ray(transform.position, transform.forward);
-		//RaycastHit hit;
-		//if (Physics.SphereCast(ray, 0.75f, out hit))
-		//{
-		//	GameObject hitObject = hit.transform.gameObject;
-		//	if (hitObject.GetComponent<PlayerInfo>())
-		//	{
-		//		if (ThrowBox == null)
-		//		{
-		//			ThrowBox = Instantiate(ThrowBoxPrefab) as GameObject;
-		//			ThrowBox.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-		//			ThrowBox.transform.rotation = transform.rotation;
-		//		}
-		//	}
-		//	else if (hit.distance < obstacleRange)
-		//	{
-		//		float angle = Random.Range(-110, 110);
-		//		transform.Rotate(0, angle, 0);
-		//	}
-		//}
+			if (distance <= agent.stoppingDistance)
+			{
+				// Attack
+				//playerBehaviour.TakeDamage(0.1);
+				agent.SetDestination(target.position);
+			}
+		}
 	}
-
-	
-	//public void SetAlive(bool alive) {
-	//	_alive = alive;
-	//}
-
-    // Point towards the player
-    //void FaceTarget()
-    //{
-    //    Vector3 direction = (target.position - transform.position).normalized;
-    //    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    //}
-
-    void OnDrawGizmosSelected()
+	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, lookRadius);
 	}
-
-
 	// killing enemy
-
 	public void TakeDamage(float amount)
 	{
 		health -= amount;
+		healthBar.TakeDamage(amount);
 		if (health <= 0f)
 		{
 			Die();
