@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-07 16:48:00 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-03 00:48:01
+ * @Last Modified time: 2021-03-07 14:23:08
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart() {
         playClickSoundEffect();
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScreen");
+        SceneManager.LoadScene("Prototype_1");
     }
 
     public void Save() {

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class GameOver : MonoBehaviour
+public class GameWin : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public AudioSource clickSound;
