@@ -5,7 +5,11 @@ using UnityEngine;
 public class SpikeDamage : MonoBehaviour
 {
 	public float lookRadius = 4f;
-	public AudioSource spikeSound;
+
+	public AudioClip audioClip;
+	public float volume;
+	AudioSource spikeSound;
+	public bool alreadyPlayed = false;
 
 	private float damage = 5f;
 
@@ -35,14 +39,16 @@ public class SpikeDamage : MonoBehaviour
 		if (distance <= lookRadius)
 		{
 			playerBehaviour.TakeDamage(damage);
-			spikeSound.Play();
 		}
-        else
-        {
-            spikeSound.Stop();
-        }
-
     }
+	void OnTriggerEnter()
+	{
+		if (!alreadyPlayed)
+		{
+			spikeSound.PlayOneShot(audioClip, volume);
+			alreadyPlayed = true;
+		}
+	}
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;

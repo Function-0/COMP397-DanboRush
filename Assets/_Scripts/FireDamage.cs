@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class FireDamage : MonoBehaviour
 {
     public float lookRadius = 5f;
-	//public float soundRadius = 10f;
+
 	public AudioClip audioClip;
 	public float volume;
 	 AudioSource fireSound;
@@ -41,14 +41,6 @@ public class FireDamage : MonoBehaviour
         {
             playerBehaviour.TakeDamage(damage);
         }
-		//if (distance <= soundRadius)
-  //      {
-		//	fireSound.Play();
-  //      }
-		//else
-  //      {
-		//	fireSound.Stop();
-  //      }
 
     }
 
@@ -59,7 +51,6 @@ public class FireDamage : MonoBehaviour
 			fireSound.PlayOneShot(audioClip, volume);
 			alreadyPlayed = true;
 		}
-		//fireSound.s
     }
 
     void OnDrawGizmosSelected()
