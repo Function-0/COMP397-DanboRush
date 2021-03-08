@@ -5,11 +5,14 @@ using UnityEngine.AI;
 
 public class FireDamage : MonoBehaviour
 {
-    public GameObject Fire;
-    public float lookRadius = 10f;
+    public float lookRadius = 5f;
 
-    public GameObject player;
+	private float damage = 10f;
+
+    private GameObject player;
 	Transform target;
+
+	private PlayerBehaviour playerBehaviour;
 
 
 	// Start is called before the first frame update
@@ -17,6 +20,7 @@ public class FireDamage : MonoBehaviour
     {
         player = GameObject.Find("Amazon danbo");
         target = player.transform;
+		playerBehaviour = FindObjectOfType<PlayerBehaviour>();
 	}
 
 	// Update is called once per frame
@@ -25,15 +29,13 @@ public class FireDamage : MonoBehaviour
 		// Get the distance to the player
 		float distance = Vector3.Distance(target.position, transform.position);
 
-		// If inside the radius
-		if (distance >= lookRadius)
-		{
-			Fire.SetActive(!Fire.activeInHierarchy);
-        }
-        else
+       // If inside the radius
+
+        if (distance <= lookRadius)
         {
-            Fire.SetActive(Fire.activeInHierarchy);
+            playerBehaviour.TakeDamage(damage);
         }
+
     }
 	void OnDrawGizmosSelected()
 	{

@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 251932349421534272}
   - component: {fileID: 251932349421534278}
   - component: {fileID: 251932349421534276}
+  - component: {fileID: 1253472760818655502}
   m_Layer: 3
   m_Name: Boximon Cyclopes
   m_TagString: Untagged
@@ -393,7 +394,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251932349421534267}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 23.78, y: 0, z: 111.7}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
@@ -502,6 +503,21 @@ MonoBehaviour:
   speed: 3
   obstacleRange: 5
   player: {fileID: 0}
+  playerBehaviour: {fileID: 0}
+  healthBar: {fileID: 8645733222564154302}
+--- !u!114 &1253472760818655502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251932349421534267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab23c713c870d24489615e81e7e9b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &251932349421534269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866614751010623319, guid: 7be49ef5cddfe8249ba9856fc5cb3e72, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1.376
       objectReference: {fileID: 0}
     - target: {fileID: 4866614751010623319, guid: 7be49ef5cddfe8249ba9856fc5cb3e72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1325,6 +1341,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7be49ef5cddfe8249ba9856fc5cb3e72, type: 3}
+--- !u!114 &8645733222564154302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716176001821489668, guid: 7be49ef5cddfe8249ba9856fc5cb3e72, type: 3}
+  m_PrefabInstance: {fileID: 6929566979982651834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e914486dab1e3d046863b176b71507ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2568023896901975789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4866614751010623319, guid: 7be49ef5cddfe8249ba9856fc5cb3e72, type: 3}

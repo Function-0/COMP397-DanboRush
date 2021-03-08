@@ -19,6 +19,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public GameObject fire;
 
+    public PlayerBehaviour playerBehaviour;
+
     public GameObject bulletPrefab;
     public Camera playerCamera;
 
