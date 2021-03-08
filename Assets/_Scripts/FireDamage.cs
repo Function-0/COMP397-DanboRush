@@ -6,10 +6,13 @@ using UnityEngine.AI;
 public class FireDamage : MonoBehaviour
 {
     public float lookRadius = 5f;
-	public float soundRadius = 10f;
-	public AudioSource fireSound;
+	//public float soundRadius = 10f;
+	public AudioClip audioClip;
+	public float volume;
+	 AudioSource fireSound;
+	public bool alreadyPlayed = false;
 
-	private float damage = 0.1f;
+	private float damage = 5f;
 
     private GameObject player;
 	Transform target;
@@ -38,17 +41,28 @@ public class FireDamage : MonoBehaviour
         {
             playerBehaviour.TakeDamage(damage);
         }
-		if (distance <= soundRadius)
-        {
-			fireSound.Play();
-        }
-		else
-        {
-			fireSound.Stop();
-        }
+		//if (distance <= soundRadius)
+  //      {
+		//	fireSound.Play();
+  //      }
+		//else
+  //      {
+		//	fireSound.Stop();
+  //      }
 
     }
-	void OnDrawGizmosSelected()
+
+    void OnTriggerEnter(	)
+    {
+		if(!alreadyPlayed)
+		{
+			fireSound.PlayOneShot(audioClip, volume);
+			alreadyPlayed = true;
+		}
+		//fireSound.s
+    }
+
+    void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, lookRadius);

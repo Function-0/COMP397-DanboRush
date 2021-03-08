@@ -35,17 +35,14 @@ public class SpikeDamage : MonoBehaviour
 		if (distance <= lookRadius)
 		{
 			playerBehaviour.TakeDamage(damage);
+			spikeSound.Play();
 		}
-		//if (distance <= soundRadius)
-		//{
-		//	spikeSound.Play();
-		//}
-		//else
-		//{
-		//	spikeSound.Stop();
-		//}
+        else
+        {
+            spikeSound.Stop();
+        }
 
-	}
+    }
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
