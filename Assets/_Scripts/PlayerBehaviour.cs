@@ -17,6 +17,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private float jumpForce = 5f;
 
+    public GameObject fire;
+
     public GameObject bulletPrefab;
     public Camera playerCamera;
 
@@ -98,4 +100,6 @@ public class PlayerBehaviour : MonoBehaviour
                 break;
         }
     }
+
+
 }
