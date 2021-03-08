@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-07 16:11:45
+ * @Last Modified time: 2021-03-07 20:51:01
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -27,18 +27,24 @@ public class GameController : MonoBehaviour
     [Header("Player")]
     public PlayerBehaviour player;
 
+    [Header("Input Options")]
+    public OptionsSO currentOptions;
+    public KeyCode pauseKey;
+    public KeyCode inventoryKey;
+    public KeyCode miniMapKey;
+
     public static bool isPaused = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        LoadCurrentOptions();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(pauseKey))
         {
             if (isPaused)
             {
@@ -50,18 +56,18 @@ public class GameController : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(inventoryKey))
         {
             // toggle the Inventory on/off
             inventory.SetActive(!inventory.activeInHierarchy);
-            playClickSoundEffect();
+            PlayClickSoundEffect();
         }
 
-        else if (Input.GetKeyDown(KeyCode.M))
+        else if (Input.GetKeyDown(miniMapKey))
         {
             // toggle the MiniMap on/off
             miniMap.SetActive(!miniMap.activeInHierarchy);
-            playClickSoundEffect();
+            PlayClickSoundEffect();
         }
 
         // TODO: change the condition to time out or the player is dead
@@ -71,34 +77,42 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void playClickSoundEffect()
+    // Load the keys from currentOptions
+    public void LoadCurrentOptions()
+    {
+        pauseKey = currentOptions.pauseKey;
+        inventoryKey = currentOptions.inventoryKey;
+        miniMapKey = currentOptions.miniMapKey;
+    }
+
+    public void PlayClickSoundEffect()
     {
         clickSound.Play();
     }
 
     public void Resume()
     {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         
-        toggleScripts();
+        ToggleScripts();
     }
 
     public void Pause()
     {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         isPaused = true;
         
-        toggleScripts();
+        ToggleScripts();
     }
     
-    private void toggleScripts()
+    private void ToggleScripts()
     {
         foreach (var script in scripts)
         {
@@ -108,19 +122,19 @@ public class GameController : MonoBehaviour
 
     public void Restart() {
         isPaused = false;
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Prototype_1");
     }
 
     public void SaveGame() {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         Debug.Log("Save...");
         SaveSystem.SavePlayer(player);
     }
 
     public void LoadGame() {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         Debug.Log("Load...");
         
         PlayerData data = SaveSystem.LoadPlayer();
@@ -134,17 +148,17 @@ public class GameController : MonoBehaviour
     }
     
     public void OptionsMenu() {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         optionsMenu.SetActive(!optionsMenu.activeInHierarchy);
     }
 
     public void MainMenu() {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit() {
-        playClickSoundEffect();
+        PlayClickSoundEffect();
         SceneManager.LoadScene("ExitScreen");
         Application.Quit();
     }
@@ -153,6 +167,7 @@ public class GameController : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
-        toggleScripts();
+        ToggleScripts();
     }
+
 }

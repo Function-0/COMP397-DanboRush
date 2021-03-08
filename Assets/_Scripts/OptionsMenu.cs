@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-05  ‏‎16:42:26
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-02-05 17:49:28
+ * @Last Modified time: 2021-03-07 21:06:05
  */
 
 using System.Collections;
@@ -13,42 +13,31 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
+    [Header("OptionsSO")]
+    public OptionsSO currentOptions;
+    public OptionsSO defaultOptions;
+    public GameController gameController;
+    public PlayerBehaviour player;
+
+    [Header("Sound Settings")]
     public AudioMixer audioMixer;
     public AudioSource clickSound;
-
-    private Dictionary<string, KeyCode> keyMapping = new Dictionary<string, KeyCode>();
-    public Text forward, backward, left, right, jump, pause, boost, inventory, swap;
-    private GameObject currentKey;
-
+    
+    [Header("Key Controls")]
     public Button[] buttons;
+    public Text forward, backward, left, right, jump, pause, boost, inventory, swap, miniMap;
     public Toggle invertXAxis, invertYAxis;
+    public Slider musicSlider, soundSlider;
+    
+    private Dictionary<string, KeyCode> keyMapping = new Dictionary<string, KeyCode>();
+    private GameObject currentKey;
     public static bool invertXState, invertYState = false;
 
     // Use this for initialization
     void Start () {
-        setBtnSelectedColor();
-
-        // Add key mapping
-        keyMapping.Add("Forward", KeyCode.W);
-        keyMapping.Add("Backward", KeyCode.S);
-        keyMapping.Add("Left", KeyCode.A);
-        keyMapping.Add("Right", KeyCode.D);
-        keyMapping.Add("Jump", KeyCode.Space);
-        keyMapping.Add("Pause", KeyCode.Escape);
-        keyMapping.Add("Boost", KeyCode.LeftShift);
-        keyMapping.Add("Inventory", KeyCode.E);
-        keyMapping.Add("Swap", KeyCode.Q);
-
-        // Reflect text on UI controls
-        forward.text = keyMapping["Forward"].ToString();
-        backward.text = keyMapping["Backward"].ToString();
-        left.text = keyMapping["Left"].ToString();
-        right.text = keyMapping["Right"].ToString();
-        jump.text = keyMapping["Jump"].ToString();
-        pause.text = keyMapping["Pause"].ToString();
-        boost.text = keyMapping["Boost"].ToString();
-        inventory.text = keyMapping["Inventory"].ToString();
-        swap.text = keyMapping["Swap"].ToString();
+        SetBtnSelectedColor();
+        SetUpKeyMappingDict();
+        UpdateKeyControlText();
     }
 
     // Update is called once per frame
@@ -56,7 +45,7 @@ public class OptionsMenu : MonoBehaviour
 
     }
 
-    private void setBtnSelectedColor() {
+    private void SetBtnSelectedColor() {
         Color32 selectedColor = new Color32(253, 161, 71, 255);
 
         foreach(Button btn in buttons) {
@@ -72,22 +61,71 @@ public class OptionsMenu : MonoBehaviour
             Event e = Event.current;
             if (e.isKey) {
                 keyMapping[currentKey.name] = e.keyCode;
+
+                string keyName = currentKey.name.Replace("Btn", "");
+                Debug.Log(keyName);
+                UpdateCurrentOptions(keyName, e.keyCode);
+
                 currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
                 currentKey = null;
             }
         }
     }
 
+    public void UpdateCurrentOptions(string keyName, KeyCode key) {
+        switch(keyName) {
+            case "Forward":
+                currentOptions.forwardKey = key;
+                break;
+            case "Backward":
+                currentOptions.backwardKey = key;
+                break;
+            case "Left":
+                currentOptions.leftKey = key;
+                break;
+            case "Right":
+                currentOptions.rightKey = key;
+                break;
+            case "Jump":
+                currentOptions.jumpKey = key;
+                break;
+            case "Pause":
+                currentOptions.pauseKey = key;
+                break;
+            case "Boost":
+                currentOptions.boostKey = key;
+                break;
+            case "Inventory":
+                currentOptions.inventoryKey = key;
+                break;
+            case "Swap":
+                currentOptions.swapKey = key;
+                break;
+            case "MiniMap":
+                currentOptions.miniMapKey = key;
+                break;
+        }
+        
+        gameController.LoadCurrentOptions();
+        player.LoadCurrentOptions();
+    }
+
     // Click event listener for key mappings
     public void ChangeKey(GameObject clickedKey) {
-        playClickSoundEffect();
+        Debug.Log(clickedKey);
+        PlayClickSoundEffect();
         currentKey = clickedKey;
     }
 
-    // Click event listener for toggles (InvertXAxis and InvertYAxis)
-    public void ToggleInvertAxis() {
-        playClickSoundEffect();
+    // Click event listener for InvertXAxis
+    public void ToggleInvertXAxis() {
+        PlayClickSoundEffect();
         invertXState = invertXAxis.isOn;
+    }
+
+    // Click event listener for InvertYAxis
+    public void ToggleInvertYAxis() {
+        PlayClickSoundEffect();
         invertYState = invertYAxis.isOn;
     }
 
@@ -99,8 +137,81 @@ public class OptionsMenu : MonoBehaviour
         audioMixer.SetFloat("SoundVolume", volume);
     }
 
-    public void playClickSoundEffect() {
+    public void PlayClickSoundEffect() {
         clickSound.Play();
     } 
+
+    private void SetUpKeyMappingDict() {
+        // Add key mapping
+        keyMapping.Add("Forward", currentOptions.forwardKey);
+        keyMapping.Add("Backward", currentOptions.backwardKey);
+        keyMapping.Add("Left", currentOptions.leftKey);
+        keyMapping.Add("Right", currentOptions.rightKey);
+        keyMapping.Add("Jump", currentOptions.jumpKey);
+        keyMapping.Add("Pause", currentOptions.pauseKey);
+        keyMapping.Add("Boost", currentOptions.boostKey);
+        keyMapping.Add("Inventory", currentOptions.inventoryKey);
+        keyMapping.Add("Swap", currentOptions.swapKey);
+        keyMapping.Add("MiniMap", currentOptions.miniMapKey);
+    }
+
+    private void UpdateKeyControlText() {
+        // Reflect text on UI controls
+        forward.text = keyMapping["Forward"].ToString();
+        backward.text = keyMapping["Backward"].ToString();
+        left.text = keyMapping["Left"].ToString();
+        right.text = keyMapping["Right"].ToString();
+        jump.text = keyMapping["Jump"].ToString();
+        pause.text = keyMapping["Pause"].ToString();
+        boost.text = keyMapping["Boost"].ToString();
+        inventory.text = keyMapping["Inventory"].ToString();
+        swap.text = keyMapping["Swap"].ToString();
+        miniMap.text = keyMapping["MiniMap"].ToString();
+    }
+
+    public void LoadCurrentOptions() {
+        keyMapping["Forward"] = currentOptions.forwardKey;
+        keyMapping["Backward"] = currentOptions.backwardKey;
+        keyMapping["Left"] = currentOptions.leftKey;
+        keyMapping["Right"] = currentOptions.rightKey;
+        keyMapping["Jump"] = currentOptions.jumpKey;
+        keyMapping["Pause"] = currentOptions.pauseKey;
+        keyMapping["Boost"] = currentOptions.boostKey;
+        keyMapping["Inventory"] = currentOptions.inventoryKey;
+        keyMapping["Swap"] = currentOptions.swapKey;
+        keyMapping["MiniMap"] = currentOptions.miniMapKey;
+
+        UpdateKeyControlText();
+        gameController.LoadCurrentOptions();
+        player.LoadCurrentOptions();
+    }
+
+    public void ResetToDefaults()
+    {
+        PlayClickSoundEffect();
+        // Reset Audio Settings
+        musicSlider.value = 0;
+        soundSlider.value = 0;
+
+        // Reset Keyboard Controls Settings
+        currentOptions.forwardKey = defaultOptions.forwardKey;
+        currentOptions.backwardKey = defaultOptions.backwardKey;
+        currentOptions.leftKey = defaultOptions.leftKey;
+        currentOptions.rightKey = defaultOptions.rightKey;
+        currentOptions.jumpKey = defaultOptions.jumpKey;
+        currentOptions.pauseKey = defaultOptions.pauseKey;
+        currentOptions.boostKey = defaultOptions.boostKey;
+        currentOptions.inventoryKey = defaultOptions.inventoryKey;
+        currentOptions.swapKey = defaultOptions.swapKey;
+        currentOptions.miniMapKey = defaultOptions.miniMapKey;
+        
+        // Reset Mouse Controls Settings
+        invertXState = false;
+        invertYState = false;
+        invertXAxis.isOn = invertXState;
+        invertYAxis.isOn = invertYState;
+
+        LoadCurrentOptions();
+    }
 
 }

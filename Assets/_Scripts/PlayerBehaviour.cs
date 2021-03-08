@@ -27,11 +27,21 @@ public class PlayerBehaviour : MonoBehaviour
     [Range(0, 100)]
     public float health = 100;
 
+    [Header("Input Options")]
+    public OptionsSO currentOptions;
+    public KeyCode forwardKey;
+    public KeyCode backwardKey;
+    public KeyCode leftKey;
+    public KeyCode rightKey;
+    public KeyCode jumpKey;
+    public KeyCode boostKey;
+    public KeyCode swapKey;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        LoadCurrentOptions();
     }
 
     // Update is called once per frame - once every 16.6666ms
@@ -53,7 +63,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         controller.Move(move * maxSpeed * Time.deltaTime);
 
-        if (Input.GetButton("Jump") && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
@@ -97,5 +107,17 @@ public class PlayerBehaviour : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    // Load the keys from currentOptions
+    public void LoadCurrentOptions()
+    {
+        forwardKey = currentOptions.forwardKey;
+        backwardKey = currentOptions.backwardKey;
+        leftKey = currentOptions.leftKey;
+        rightKey = currentOptions.rightKey;
+        jumpKey = currentOptions.jumpKey;
+        boostKey = currentOptions.boostKey;
+        swapKey = currentOptions.swapKey;
     }
 }
