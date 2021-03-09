@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -97,6 +98,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (health < 0)
         {
             health = 0;
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

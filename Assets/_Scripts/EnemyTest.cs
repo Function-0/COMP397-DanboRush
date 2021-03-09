@@ -28,7 +28,7 @@ public class EnemyTest : MonoBehaviour
 
 	private float distance;
 
-	private PlayerBehaviour playerBehaviour;
+	//private PlayerBehaviour playerBehaviour;
 
 	public HealthBarScreenSpaceController healthBar;
 
@@ -37,7 +37,7 @@ public class EnemyTest : MonoBehaviour
 		player = GameObject.Find("Amazon danbo");
 		target = player.transform;
 		agent = GetComponent<NavMeshAgent>();
-		playerBehaviour = FindObjectOfType<PlayerBehaviour>();
+		//playerBehaviour = FindObjectOfType<PlayerBehaviour>();
 		
 	}
 
@@ -59,8 +59,7 @@ public class EnemyTest : MonoBehaviour
 			GameObject boxObject = Instantiate(boxPrefab);
 			boxObject.transform.position = transform.position;
 			boxObject.transform.forward = transform.forward;
-			playerBehaviour.TakeDamage(10f);
-			//shoot();
+			shoot();
 		}
 
 	}
@@ -72,11 +71,10 @@ public class EnemyTest : MonoBehaviour
 		{
 			Debug.Log(hit.transform.name);
 
-			//PlayerBehaviour player = hit.transform.GetComponent<PlayerBehaviour>();
-			//player != null
-			if (hit.collider.tag == "Player")
+			PlayerBehaviour player = hit.transform.GetComponent<PlayerBehaviour>();
+			if (player != null)
 			{
-				playerBehaviour.TakeDamage(10f);
+				player.TakeDamage(10f);
 			}
 		}
 	}

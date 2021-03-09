@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
 	Transform target;
 	NavMeshAgent agent;
 
+	public float range = 100f;
+
 	public float speed = 3.0f;
 	public float obstacleRange = 5.0f;
 	private bool _alive;
@@ -26,7 +28,7 @@ public class Enemy : MonoBehaviour
 
 	private float distance;
 
-	private PlayerBehaviour playerBehaviour;
+	//private PlayerBehaviour playerBehaviour;
 
 	public HealthBarScreenSpaceController healthBar;
 
@@ -35,7 +37,7 @@ public class Enemy : MonoBehaviour
 		player = GameObject.Find("Amazon danbo");
 		target = player.transform;
 		agent = GetComponent<NavMeshAgent>();
-		playerBehaviour = FindObjectOfType<PlayerBehaviour>();
+		//playerBehaviour = FindObjectOfType<PlayerBehaviour>();
 
 	}
 
@@ -57,10 +59,25 @@ public class Enemy : MonoBehaviour
 			GameObject boxObject = Instantiate(boxPrefab);
 			boxObject.transform.position = transform.position;
 			boxObject.transform.forward = transform.forward;
+			shoot();
 		}
+
 	}
 
+	void shoot()
+	{
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, transform.forward, out hit, range))
+		{
+			Debug.Log(hit.transform.name);
 
+			PlayerBehaviour player = hit.transform.GetComponent<PlayerBehaviour>();
+			if (player != null)
+			{
+				player.TakeDamage(10f);
+			}
+		}
+	}
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
