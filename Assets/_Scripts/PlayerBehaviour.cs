@@ -98,7 +98,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (health < 0)
         {
             health = 0;
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("GameWin");
         }
     }
 
