@@ -10,6 +10,9 @@ public class MainMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public AudioSource clickSound;
 
+    [Header("Menu")]
+    public GameObject optionsMenu;
+
     //Method to create sound effect
     public void SoundEffect()
     {
@@ -24,10 +27,9 @@ public class MainMenu : MonoBehaviour
     }
 
     //Method for options
-    public void Options()
-    {
+    public void OptionsMenu() {
         SoundEffect();
-        SceneManager.LoadScene("OptionsMenu");
+        optionsMenu.SetActive(!optionsMenu.activeInHierarchy);
     }
 
     //Method For Quit

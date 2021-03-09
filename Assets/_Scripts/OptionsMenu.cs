@@ -106,8 +106,13 @@ public class OptionsMenu : MonoBehaviour
                 break;
         }
         
-        gameController.LoadCurrentOptions();
-        player.LoadCurrentOptions();
+        if (gameController) {
+            gameController.LoadCurrentOptions();
+        }
+
+        if (player) {
+            player.LoadCurrentOptions();
+        }
     }
 
     // Click event listener for key mappings
@@ -182,8 +187,14 @@ public class OptionsMenu : MonoBehaviour
         keyMapping["MiniMap"] = currentOptions.miniMapKey;
 
         UpdateKeyControlText();
-        gameController.LoadCurrentOptions();
-        player.LoadCurrentOptions();
+
+        if (gameController) {
+            gameController.LoadCurrentOptions();
+        }
+
+        if (player) {
+            player.LoadCurrentOptions();
+        }
     }
 
     public void ResetToDefaults()
