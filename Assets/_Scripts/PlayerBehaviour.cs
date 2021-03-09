@@ -61,13 +61,23 @@ public class PlayerBehaviour : MonoBehaviour
             velocity.y = -2.0f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        // Move forward or backward
+        if(Input.GetKey(forwardKey) || Input.GetKey(backwardKey))
+        {
+            float z = Input.GetAxis("Vertical");
+            Vector3 move = transform.forward * z;
+            controller.Move(move * maxSpeed * Time.deltaTime);
+        }
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        // Move left or right
+        if(Input.GetKey(leftKey) || Input.GetKey(rightKey))
+        {
+            float x = Input.GetAxis("Horizontal");
+            Vector3 move = transform.right * x;
+            controller.Move(move * maxSpeed * Time.deltaTime);
+        }
 
-        controller.Move(move * maxSpeed * Time.deltaTime);
-
+        // Jump
         if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
