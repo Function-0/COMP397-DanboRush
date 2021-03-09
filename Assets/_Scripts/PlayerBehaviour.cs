@@ -42,6 +42,8 @@ public class PlayerBehaviour : MonoBehaviour
     public KeyCode boostKey;
     public KeyCode swapKey;
 
+    public GameController gameController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,7 +110,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (health < 0)
         {
             health = 0;
-            SceneManager.LoadScene("GameWin");
+            gameController.GameOver();
         }
     }
 
