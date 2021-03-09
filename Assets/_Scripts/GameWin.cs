@@ -10,6 +10,11 @@ public class GameWin : MonoBehaviour
     public AudioMixer audioMixer;
     public AudioSource clickSound;
 
+    private void Start() 
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     //Method to create sound effect
     public void SoundEffect()
     {

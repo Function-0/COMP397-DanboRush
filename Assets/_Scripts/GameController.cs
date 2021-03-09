@@ -70,12 +70,6 @@ public class GameController : MonoBehaviour
             miniMap.SetActive(!miniMap.activeInHierarchy);
             PlayClickSoundEffect();
         }
-
-        // TODO: change the condition to time out or the player is dead
-        else if (Input.GetKeyDown(KeyCode.G)) {
-            gameOverMenu.SetActive(true);
-            GameOver();
-        }
     }
 
     // Load the keys from currentOptions
@@ -165,6 +159,7 @@ public class GameController : MonoBehaviour
     }
 
     public void GameOver() {
+        gameOverMenu.SetActive(true);
         isPaused = true;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
