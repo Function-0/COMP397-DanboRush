@@ -63,19 +63,31 @@ public class PlayerBehaviour : MonoBehaviour
             velocity.y = -2.0f;
         }
 
-        // Move forward or backward
-        if(Input.GetKey(forwardKey) || Input.GetKey(backwardKey))
+        // Move forward
+        if(Input.GetKey(forwardKey))
         {
-            float z = Input.GetAxis("Vertical");
-            Vector3 move = transform.forward * z;
+            Vector3 move = transform.forward;
             controller.Move(move * maxSpeed * Time.deltaTime);
         }
 
-        // Move left or right
-        if(Input.GetKey(leftKey) || Input.GetKey(rightKey))
+        // Move backward
+        if(Input.GetKey(backwardKey))
         {
-            float x = Input.GetAxis("Horizontal");
-            Vector3 move = transform.right * x;
+            Vector3 move = transform.forward * -1;
+            controller.Move(move * maxSpeed * Time.deltaTime);
+        }
+
+        // Move left
+        if(Input.GetKey(leftKey))
+        {
+            Vector3 move = transform.right * -1;
+            controller.Move(move * maxSpeed * Time.deltaTime);
+        }
+
+        // Move right
+        if(Input.GetKey(rightKey))
+        {
+            Vector3 move = transform.right;
             controller.Move(move * maxSpeed * Time.deltaTime);
         }
 
