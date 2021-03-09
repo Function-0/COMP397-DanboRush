@@ -91,6 +91,8 @@ public class Enemy : MonoBehaviour
 		if (health <= 0f)
 		{
 			Die();
+			FindObjectOfType<Countdown>().AddTime(5);
+			FindObjectOfType<ScoreController>().AddScore(100);
 		}
 	}
 

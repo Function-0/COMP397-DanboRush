@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
 
     public static bool isPaused = false;
 
+    public bool IsGameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,30 +47,33 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pauseKey))
+        if (!IsGameOver)
         {
-            if (isPaused)
+            if (Input.GetKeyDown(pauseKey))
             {
-                Resume();
+                if (isPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
             }
-            else
+
+            else if (Input.GetKeyDown(inventoryKey))
             {
-                Pause();
+                // toggle the Inventory on/off
+                inventory.SetActive(!inventory.activeInHierarchy);
+                PlayClickSoundEffect();
             }
-        }
 
-        else if (Input.GetKeyDown(inventoryKey))
-        {
-            // toggle the Inventory on/off
-            inventory.SetActive(!inventory.activeInHierarchy);
-            PlayClickSoundEffect();
-        }
-
-        else if (Input.GetKeyDown(miniMapKey))
-        {
-            // toggle the MiniMap on/off
-            miniMap.SetActive(!miniMap.activeInHierarchy);
-            PlayClickSoundEffect();
+            else if (Input.GetKeyDown(miniMapKey))
+            {
+                // toggle the MiniMap on/off
+                miniMap.SetActive(!miniMap.activeInHierarchy);
+                PlayClickSoundEffect();
+            }
         }
     }
 
@@ -119,6 +124,14 @@ public class GameController : MonoBehaviour
         isPaused = false;
         PlayClickSoundEffect();
         Time.timeScale = 1f;
+
+        if (IsGameOver)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            ToggleScripts();
+            IsGameOver = false;
+        }
+
         SceneManager.LoadScene("Prototype_1");
     }
 
@@ -159,7 +172,11 @@ public class GameController : MonoBehaviour
     }
 
     public void GameOver() {
+        IsGameOver = true;
         gameOverMenu.SetActive(true);
+
+        FindObjectOfType<AudioController>().StopSound(0);
+
         isPaused = true;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
