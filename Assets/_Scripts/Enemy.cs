@@ -6,8 +6,12 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 	public float lookRadius = 10f;
-
+	public GameObject boxPrefab;
 	public float health = 100f; // enemy hp
+	public float shootingDistance = 10f;
+
+	public float fireRate = 1f;
+	private float nextTimeToFire = 0f;
 
 	Transform target;
 	NavMeshAgent agent;
@@ -15,15 +19,14 @@ public class Enemy : MonoBehaviour
 	public float speed = 3.0f;
 	public float obstacleRange = 5.0f;
 	private bool _alive;
+
 	//CharacterCombat combatManager;
 
-	public GameObject player;
+	private GameObject player;
 
-//	public GameObject ThrowBoxPrefab;
-	//public Camera playerCamera;
-	//private GameObject ThrowBox;
+	private float distance;
 
-	public PlayerBehaviour playerBehaviour;
+	private PlayerBehaviour playerBehaviour;
 
 	public HealthBarScreenSpaceController healthBar;
 
@@ -33,29 +36,31 @@ public class Enemy : MonoBehaviour
 		target = player.transform;
 		agent = GetComponent<NavMeshAgent>();
 		playerBehaviour = FindObjectOfType<PlayerBehaviour>();
-		//_alive = true;
-		//combatManager = GetComponent<CharacterCombat>();
+
 	}
 
 	void Update()
 	{
 		// Get the distance to the player
-		float distance = Vector3.Distance(target.position, transform.position);
+		distance = Vector3.Distance(target.position, transform.position);
 
 		// If inside the radius
 		if (distance <= lookRadius)
 		{
 			// Move towards the player
 			agent.SetDestination(target.position);
+		}
 
-			if (distance <= agent.stoppingDistance)
-			{
-				// Attack
-				//playerBehaviour.TakeDamage(0.1);
-				agent.SetDestination(target.position);
-			}
+		if (distance <= shootingDistance && Time.time >= nextTimeToFire)
+		{
+			nextTimeToFire = Time.time + 1f / fireRate;
+			GameObject boxObject = Instantiate(boxPrefab);
+			boxObject.transform.position = transform.position;
+			boxObject.transform.forward = transform.forward;
 		}
 	}
+
+
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;

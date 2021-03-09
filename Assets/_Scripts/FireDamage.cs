@@ -14,7 +14,10 @@ public class FireDamage : MonoBehaviour
 
 	private float damage = 5f;
 
-    private GameObject player;
+	public float fireRate = 1f;
+	private float nextTimeToFire = 0f;
+
+	private GameObject player;
 	Transform target;
 
 	private PlayerBehaviour playerBehaviour;
@@ -37,9 +40,10 @@ public class FireDamage : MonoBehaviour
 
        // If inside the radius
 
-        if (distance <= lookRadius)
-        {
-            playerBehaviour.TakeDamage(damage);
+        if (distance <= lookRadius && Time.time >= nextTimeToFire)
+		{
+			nextTimeToFire = Time.time + 1f / fireRate; 
+			playerBehaviour.TakeDamage(damage);
         }
 
     }

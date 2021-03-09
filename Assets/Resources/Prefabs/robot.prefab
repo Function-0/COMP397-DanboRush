@@ -208,11 +208,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 20
+  boxPrefab: {fileID: 3391879111512731354, guid: 9826126c0e0da5f48bc530eb0b716ae2, type: 3}
   health: 50
+  shootingDistance: 10
+  shoot: 0
+  fireRate: 1
   speed: 3
   obstacleRange: 5
-  player: {fileID: 0}
-  playerBehaviour: {fileID: 0}
   healthBar: {fileID: 6280949232946895834}
 --- !u!114 &3135392393548980087
 MonoBehaviour:
