@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour
     //Method For Quit
     public void QuitGame()
     {
+        SoundEffect();
         SceneManager.LoadScene("ExitScreen");
         Application.Quit();
     }
