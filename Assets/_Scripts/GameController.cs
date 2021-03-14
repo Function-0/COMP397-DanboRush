@@ -94,6 +94,7 @@ public class GameController : MonoBehaviour
     {
         PlayClickSoundEffect();
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+        optionsMenu.SetActive(false); // close the Options menu as well
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
