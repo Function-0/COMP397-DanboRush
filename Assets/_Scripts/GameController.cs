@@ -35,13 +35,12 @@ public class GameController : MonoBehaviour
 
     public static bool isPaused = false;
 
-    public bool IsGameOver = false;
+    public static bool IsGameOver = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        isPaused = false;
-        LoadCurrentOptions();
+        ResetGameStateToDefault();
     }
 
     // Update is called once per frame
@@ -85,6 +84,16 @@ public class GameController : MonoBehaviour
         miniMapKey = currentOptions.miniMapKey;
     }
 
+    private void ResetGameStateToDefault()
+    {
+        isPaused = false;
+        IsGameOver = false;
+        Time.timeScale = 1f;
+        LoadCurrentOptions();
+        ToggleScripts();
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void PlayClickSoundEffect()
     {
         clickSound.Play();
@@ -122,17 +131,8 @@ public class GameController : MonoBehaviour
     }
 
     public void Restart() {
-        isPaused = false;
         PlayClickSoundEffect();
-        Time.timeScale = 1f;
-
-        if (IsGameOver)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            ToggleScripts();
-            IsGameOver = false;
-        }
-
+        ResetGameStateToDefault();
         SceneManager.LoadScene("Prototype_1");
     }
 
