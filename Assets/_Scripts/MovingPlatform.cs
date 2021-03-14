@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-14 16:04:05
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-02-14 22:42:30
+ * @Last Modified time: 2021-03-14 17:58:23
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +20,7 @@ public class MovingPlatform : MonoBehaviour
     private int startPointIndex = 0;
     private Vector3 currentPoint;
     private float delayStart;
+    private float toleranceMultiplier = 0.03f;
 
 
     // Start is called before the first frame update
@@ -29,7 +30,8 @@ public class MovingPlatform : MonoBehaviour
         if (points.Length > 0) {
             currentPoint = points[startPointIndex];
         }
-        tolerance = speed * Time.deltaTime;
+
+        tolerance = speed * toleranceMultiplier;
     }
 
     // Update is called once per frame
