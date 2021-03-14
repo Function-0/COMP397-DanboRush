@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-05  ‏‎16:42:26
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-07 21:06:05
+ * @Last Modified time: 2021-03-14 15:47:06
  */
 
 using System.Collections;
@@ -38,6 +38,7 @@ public class OptionsMenu : MonoBehaviour
         SetBtnSelectedColor();
         SetUpKeyMappingDict();
         UpdateKeyControlText();
+        LoadCurrentOptions();
     }
 
     // Update is called once per frame
@@ -136,10 +137,12 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetMusicVolume(float volume) {
         audioMixer.SetFloat("MusicVolume", volume);
+        currentOptions.musicVolume = volume;
     }
 
     public void SetSoundVolume(float volume) {
         audioMixer.SetFloat("SoundVolume", volume);
+        currentOptions.soundVolume = volume;
     }
 
     public void PlayClickSoundEffect() {
@@ -175,6 +178,10 @@ public class OptionsMenu : MonoBehaviour
     }
 
     public void LoadCurrentOptions() {
+        // Load Audio Settings
+        musicSlider.value = currentOptions.musicVolume;
+        soundSlider.value = currentOptions.soundVolume;
+
         keyMapping["Forward"] = currentOptions.forwardKey;
         keyMapping["Backward"] = currentOptions.backwardKey;
         keyMapping["Left"] = currentOptions.leftKey;

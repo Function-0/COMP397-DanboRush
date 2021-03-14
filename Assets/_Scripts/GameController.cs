@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-07 20:51:01
+ * @Last Modified time: 2021-03-14 15:46:51
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -76,9 +76,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // Load the keys from currentOptions
+    // Load the keys and volumes from currentOptions
     public void LoadCurrentOptions()
     {
+        optionsMenu.GetComponent<OptionsMenu>().SetMusicVolume(currentOptions.musicVolume);
+        optionsMenu.GetComponent<OptionsMenu>().SetSoundVolume(currentOptions.soundVolume);
         pauseKey = currentOptions.pauseKey;
         inventoryKey = currentOptions.inventoryKey;
         miniMapKey = currentOptions.miniMapKey;
