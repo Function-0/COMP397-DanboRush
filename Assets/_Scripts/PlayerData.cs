@@ -2,8 +2,9 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-28 17:46:49 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-02-28 19:34:18
+ * @Last Modified time: 2021-03-14 23:46:35
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ using UnityEngine;
 public class PlayerData
 {
     public float[] position; // Vector3 can't be serialized, use float[] instead
+    public DateTime saveTime;
     
     public PlayerData (PlayerBehaviour player) {
         position = new float[3];

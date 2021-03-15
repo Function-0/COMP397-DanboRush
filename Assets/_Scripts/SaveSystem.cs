@@ -2,26 +2,30 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-28 18:24:25 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-02-28 19:28:04
+ * @Last Modified time: 2021-03-14 23:53:11
  */
+using System;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    private static string path = Application.persistentDataPath + "/player";
+    private static string path;
 
-    public static void SavePlayer(PlayerBehaviour player) {
+    public static void SavePlayer(PlayerBehaviour player, string slot, DateTime saveTime) {
+        path = Application.persistentDataPath + "/player" + slot;
         BinaryFormatter formatter = new BinaryFormatter(); // used to turn our files into binary
         FileStream stream = new FileStream(path, FileMode.Create);
         
         PlayerData data = new PlayerData(player);
+        data.saveTime = DateTime.Now;
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static PlayerData LoadPlayer() {
+    public static PlayerData LoadPlayer(string slot) {
+        path = Application.persistentDataPath + "/player" + slot;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

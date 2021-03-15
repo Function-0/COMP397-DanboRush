@@ -2,12 +2,14 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-14 15:46:51
+ * @Last Modified time: 2021-03-14 23:44:47
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -17,6 +19,16 @@ public class GameController : MonoBehaviour
     public GameObject miniMap;
     public GameObject optionsMenu;
     public GameObject gameOverMenu;
+    public GameObject saveMenu;
+    public GameObject loadMenu;
+
+    [Header("Save/Load Slots")]
+    public TextMeshProUGUI saveSlot1;
+    public TextMeshProUGUI saveSlot2; 
+    public TextMeshProUGUI saveSlot3;
+    public TextMeshProUGUI loadSlot1;
+    public TextMeshProUGUI loadSlot2;
+    public TextMeshProUGUI loadSlot3;
 
     [Header("Sound")]
     public AudioSource clickSound;
@@ -33,8 +45,8 @@ public class GameController : MonoBehaviour
     public KeyCode inventoryKey;
     public KeyCode miniMapKey;
 
+    [Header("Game States")]
     public static bool isPaused = false;
-
     public static bool IsGameOver = false;
 
     // Start is called before the first frame update
@@ -106,6 +118,8 @@ public class GameController : MonoBehaviour
         PlayClickSoundEffect();
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
         optionsMenu.SetActive(false); // close the Options menu as well
+        saveMenu.SetActive(false);
+        loadMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -138,27 +152,107 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("Prototype_1");
     }
 
-    public void SaveGame() {
+    public void ToggleSaveGameMenu() {
         PlayClickSoundEffect();
-        Debug.Log("Save...");
-        SaveSystem.SavePlayer(player);
+        PopulateSaveLoadMenu();
+        saveMenu.SetActive(!saveMenu.activeInHierarchy);
     }
 
-    public void LoadGame() {
-        PlayClickSoundEffect();
-        Debug.Log("Load...");
+    private void PopulateSaveLoadMenu()
+    {
+        PlayerData slot1 = SaveSystem.LoadPlayer("Slot1");
+        PlayerData slot2 = SaveSystem.LoadPlayer("Slot2");
+        PlayerData slot3 = SaveSystem.LoadPlayer("Slot3");
+
+        String saveTime;
+
+        if (slot1 != null)
+        {
+            saveTime = slot1.saveTime.ToString();
+            saveSlot1.text = saveTime;
+            loadSlot1.text = saveTime;
+        }
+
+        if (slot2 != null)
+        {
+            saveTime = slot2.saveTime.ToString();
+            saveSlot2.text = saveTime;
+            loadSlot2.text = saveTime;
+        }
         
-        PlayerData data = SaveSystem.LoadPlayer();
+        if (slot3 != null)
+        {
+            saveTime = slot3.saveTime.ToString();
+            saveSlot3.text = saveTime;
+            loadSlot3.text = saveTime;
+        }
+    }
+
+    private void SaveGame(string slot)
+    {
+        PlayClickSoundEffect();
+        DateTime saveTime = DateTime.Now;
+        SaveSystem.SavePlayer(player, slot, saveTime);
+        PopulateSaveLoadMenu();
+    }
+
+    public void SaveGameSlot1()
+    {
+        SaveGame("Slot1");
+        Debug.Log("Save Slot1 Completed");
+    }
+
+    public void SaveGameSlot2()
+    {
+        SaveGame("Slot2");
+        Debug.Log("Save Slot2 Completed");
+    }
+
+    public void SaveGameSlot3()
+    {
+        SaveGame("Slot3");
+        Debug.Log("Save Slot3 Completed");
+    }
+
+    public void ToggleLoadGameMenu() {
+        PlayClickSoundEffect();
+        PopulateSaveLoadMenu();
+        loadMenu.SetActive(!loadMenu.activeInHierarchy);
+    }
+
+    private void LoadGame(string slot)
+    {
+        PlayerData data = SaveSystem.LoadPlayer(slot);
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
         position.z = data.position[2];
         player.transform.position = position;
-        
         Resume();
     }
+
+    public void LoadGameSlot1()
+    {
+        PlayClickSoundEffect();
+        LoadGame("Slot1");
+        Debug.Log("Load Slot1 Completed");
+    }
+
+    public void LoadGameSlot2()
+    {
+        PlayClickSoundEffect();
+        LoadGame("Slot2");
+        Debug.Log("Load Slot2 Completed");
+    }
+
+    public void LoadGameSlot3()
+    {
+        PlayClickSoundEffect();
+        LoadGame("Slot3");
+        Debug.Log("Load Slot3 Completed");
+    }
     
-    public void OptionsMenu() {
+    public void ToggleOptionsMenu() {
         PlayClickSoundEffect();
         optionsMenu.SetActive(!optionsMenu.activeInHierarchy);
     }
