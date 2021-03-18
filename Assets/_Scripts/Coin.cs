@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private float coins = 10f;
+    private float coins = 2f;
     public CoinScript coinScript;
 
     // Start is called before the first frame update
