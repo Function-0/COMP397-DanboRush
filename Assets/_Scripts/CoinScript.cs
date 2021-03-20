@@ -8,17 +8,20 @@ public class CoinScript : MonoBehaviour
 {
     [Header("Coin Properties")]
     [Range(0, 100)]
-    public float currentCoin = 100;
+    public float currentCoin = 0;
     [Range(1, 100)]
     public float maximumCoin = 100;
 
     public Slider coinBarSlider;
 
+    [Header("Sound")]
+    public AudioSource coinSound;
+
     // Start is called before the first frame update
     void Start()
     {
         coinBarSlider = GetComponent<Slider>();
-        currentCoin = maximumCoin;
+        currentCoin = 0;
     }
 
     // Update is called once per frame
@@ -28,19 +31,24 @@ public class CoinScript : MonoBehaviour
     }
 
     public void TakeCoin(float coin)
-    {
+    {   
+        coinSound.Play();
         coinBarSlider.value += coin;
         currentCoin += coin;
-        if (currentCoin < 0)
+        if (currentCoin > maximumCoin)
         {
-            coinBarSlider.value = 0;
-            currentCoin = 0;
+            currentCoin = maximumCoin;
         }
     }
 
     public void Reset()
     {
-        coinBarSlider.value = maximumCoin;
-        currentCoin = maximumCoin;
+        coinBarSlider.value = 0;
+        currentCoin = 0;
+    }
+
+    public void SetCoinBarValue(float coin)
+    {
+        coinBarSlider.value = coin;
     }
 }

@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-14 23:44:47
+ * @Last Modified time: 2021-03-19 20:24:59
  */
 using System;
 using System.Collections;
@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Threading.Tasks;
 
 public class GameController : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI loadSlot1;
     public TextMeshProUGUI loadSlot2;
     public TextMeshProUGUI loadSlot3;
+    public SceneDataSO sceneDataSlot1;
+    public SceneDataSO sceneDataSlot2;
+    public SceneDataSO sceneDataSlot3;
+    public GameObject saveMessage;
 
     [Header("Sound")]
     public AudioSource clickSound;
@@ -49,10 +54,21 @@ public class GameController : MonoBehaviour
     public static bool isPaused = false;
     public static bool IsGameOver = false;
 
+    [Header("Game Data")]
+    public Countdown gameTime;
+    public ScoreController gameScore;
+    public CoinScript coin;
+
+    private int messageTimer = 0;
+    private int messageTimeOut = 400;
+
     // Start is called before the first frame update
     void Start()
     {
         ResetGameStateToDefault();
+        gameTime = FindObjectOfType<Countdown>();
+        gameScore = FindObjectOfType<ScoreController>();
+        coin = FindObjectOfType<CoinScript>();
     }
 
     // Update is called once per frame
@@ -85,6 +101,11 @@ public class GameController : MonoBehaviour
                 miniMap.SetActive(!miniMap.activeInHierarchy);
                 PlayClickSoundEffect();
             }
+        }
+
+        if (saveMessage.activeInHierarchy)
+        {
+            HideSaveMessageAfterTimeOut();
         }
     }
 
@@ -160,57 +181,62 @@ public class GameController : MonoBehaviour
 
     private void PopulateSaveLoadMenu()
     {
-        PlayerData slot1 = SaveSystem.LoadPlayer("Slot1");
-        PlayerData slot2 = SaveSystem.LoadPlayer("Slot2");
-        PlayerData slot3 = SaveSystem.LoadPlayer("Slot3");
+        saveSlot1.text = loadSlot1.text = 
+            String.IsNullOrEmpty(sceneDataSlot1.lastModifiedDate) ? "EMPTY" : sceneDataSlot1.lastModifiedDate;
+        saveSlot2.text = loadSlot2.text = 
+            String.IsNullOrEmpty(sceneDataSlot2.lastModifiedDate) ? "EMPTY" : sceneDataSlot2.lastModifiedDate;
+        saveSlot3.text = loadSlot3.text = 
+            String.IsNullOrEmpty(sceneDataSlot3.lastModifiedDate) ? "EMPTY" : sceneDataSlot3.lastModifiedDate;
+    }
 
-        String saveTime;
+    private void ShowSaveMessage()
+    {
+        saveMessage.SetActive(true);
+    }
 
-        if (slot1 != null)
+    private void HideSaveMessageAfterTimeOut()
+    {
+        messageTimer++;
+        if (messageTimer > messageTimeOut)
         {
-            saveTime = slot1.saveTime.ToString();
-            saveSlot1.text = saveTime;
-            loadSlot1.text = saveTime;
-        }
-
-        if (slot2 != null)
-        {
-            saveTime = slot2.saveTime.ToString();
-            saveSlot2.text = saveTime;
-            loadSlot2.text = saveTime;
-        }
-        
-        if (slot3 != null)
-        {
-            saveTime = slot3.saveTime.ToString();
-            saveSlot3.text = saveTime;
-            loadSlot3.text = saveTime;
+            saveMessage.SetActive(false);
+            messageTimer = 0;
         }
     }
 
-    private void SaveGame(string slot)
+    private void SaveGame(SceneDataSO sceneData)
     {
-        PlayClickSoundEffect();
-        DateTime saveTime = DateTime.Now;
-        SaveSystem.SavePlayer(player, slot, saveTime);
+        sceneData.playerPosition = player.transform.position;
+        sceneData.playerRotation = player.transform.rotation;
+        sceneData.playerHealth = player.health;
+        sceneData.lastModifiedDate = DateTime.Now.ToString();
+
+        sceneData.time = Mathf.Round(gameTime.timeStart);
+        sceneData.score = gameScore.score;
+        sceneData.coin = coin.currentCoin;
+
+        ShowSaveMessage();
         PopulateSaveLoadMenu();
     }
 
     public void SaveGameSlot1()
     {
-        SaveGame("Slot1");
+        PlayClickSoundEffect();
+        SaveGame(sceneDataSlot1);
         Debug.Log("Save Slot1 Completed");
     }
 
     public void SaveGameSlot2()
     {
-        SaveGame("Slot2");
+        PlayClickSoundEffect();
+        SaveGame(sceneDataSlot2);
         Debug.Log("Save Slot2 Completed");
     }
 
     public void SaveGameSlot3()
     {
-        SaveGame("Slot3");
+        PlayClickSoundEffect();
+        SaveGame(sceneDataSlot3);
         Debug.Log("Save Slot3 Completed");
     }
 
@@ -220,35 +246,41 @@ public class GameController : MonoBehaviour
         loadMenu.SetActive(!loadMenu.activeInHierarchy);
     }
 
-    private void LoadGame(string slot)
+    private void LoadGame(SceneDataSO sceneData)
     {
-        PlayerData data = SaveSystem.LoadPlayer(slot);
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        player.transform.position = position;
+        player.controller.enabled = false;
+        player.transform.position = sceneData.playerPosition;
+        player.transform.rotation = sceneData.playerRotation;
+        player.controller.enabled = true;
+        player.health = sceneData.playerHealth;
+        Debug.Log("Player's health: " + player.health);
+        player.healthBar.SetHealthValue(sceneData.playerHealth);
+        gameTime.timeStart = sceneData.time;
+        gameScore.score = sceneData.score;
+        coin.currentCoin = sceneData.coin;
+        coin.SetCoinBarValue(sceneData.coin);
+        
         Resume();
     }
 
     public void LoadGameSlot1()
     {
         PlayClickSoundEffect();
-        LoadGame("Slot1");
+        LoadGame(sceneDataSlot1);
         Debug.Log("Load Slot1 Completed");
     }
 
     public void LoadGameSlot2()
     {
         PlayClickSoundEffect();
-        LoadGame("Slot2");
+        LoadGame(sceneDataSlot2);
         Debug.Log("Load Slot2 Completed");
     }
 
     public void LoadGameSlot3()
     {
         PlayClickSoundEffect();
-        LoadGame("Slot3");
+        LoadGame(sceneDataSlot3);
         Debug.Log("Load Slot3 Completed");
     }
     
