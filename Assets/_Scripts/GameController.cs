@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-19 20:24:59
+ * @Last Modified time: 2021-03-19 21:22:37
  */
 using System;
 using System.Collections;
@@ -69,6 +69,22 @@ public class GameController : MonoBehaviour
         gameTime = FindObjectOfType<Countdown>();
         gameScore = FindObjectOfType<ScoreController>();
         coin = FindObjectOfType<CoinScript>();
+
+        // Load the game from the MainMenu scene
+        if (PlayerPrefs.HasKey("LoadGame"))
+        {
+            switch (PlayerPrefs.GetInt("LoadGame")){
+                case 1:
+                    LoadGameSlot1();
+                    break;
+                case 2:
+                    LoadGameSlot2();
+                    break;
+                case 3:
+                    LoadGameSlot3();
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -260,7 +276,9 @@ public class GameController : MonoBehaviour
         coin.currentCoin = sceneData.coin;
         coin.SetCoinBarValue(sceneData.coin);
         
-        Resume();
+        if (isPaused) {
+            Resume();
+        }
     }
 
     public void LoadGameSlot1()
