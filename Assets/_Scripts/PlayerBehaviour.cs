@@ -107,6 +107,12 @@ public class PlayerBehaviour : MonoBehaviour
             bulletObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * -20 + playerCamera.transform.up * -2 + playerCamera.transform.right * -3;
             bulletObject.transform.forward = playerCamera.transform.forward;
         }
+
+        // player fell outside of the game map
+        if (transform.position.y < 0.0f)
+        {
+            TakeDamage(100);
+        }
     }
 
     void OnDrawGizmos()
