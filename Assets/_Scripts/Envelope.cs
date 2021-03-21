@@ -6,6 +6,7 @@ public class Envelope : MonoBehaviour
 {
     private int score = 1;
     private float time = 10;
+
     public Counter counter;
     public Countdown countTime;
     private float scorecount = 100f;
