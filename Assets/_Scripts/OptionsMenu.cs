@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-02-05  ‏‎16:42:26
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-14 15:47:06
+ * @Last Modified time: 2021-03-21 07:36:52
  */
 
 using System.Collections;
@@ -33,11 +33,16 @@ public class OptionsMenu : MonoBehaviour
     private GameObject currentKey;
     public static bool invertXState, invertYState = false;
 
+    private bool isWebGL = false;
+
     // Use this for initialization
     void Start () {
-        SetBtnSelectedColor();
-        SetUpKeyMappingDict();
-        UpdateKeyControlText();
+        if (isWebGL)
+        {
+            SetBtnSelectedColor();
+            SetUpKeyMappingDict();
+            UpdateKeyControlText();
+        }
         LoadCurrentOptions();
     }
 
@@ -49,10 +54,13 @@ public class OptionsMenu : MonoBehaviour
     private void SetBtnSelectedColor() {
         Color32 selectedColor = new Color32(253, 161, 71, 255);
 
-        foreach(Button btn in buttons) {
-            ColorBlock cb = btn.colors;
-            cb.selectedColor  = selectedColor;
-            btn.colors = cb;
+        if (buttons.Length > 0)
+        {
+            foreach(Button btn in buttons) {
+                ColorBlock cb = btn.colors;
+                cb.selectedColor  = selectedColor;
+                btn.colors = cb;
+            }
         }
     }
 
@@ -165,16 +173,19 @@ public class OptionsMenu : MonoBehaviour
 
     private void UpdateKeyControlText() {
         // Reflect text on UI controls
-        forward.text = keyMapping["Forward"].ToString();
-        backward.text = keyMapping["Backward"].ToString();
-        left.text = keyMapping["Left"].ToString();
-        right.text = keyMapping["Right"].ToString();
-        jump.text = keyMapping["Jump"].ToString();
-        pause.text = keyMapping["Pause"].ToString();
-        boost.text = keyMapping["Boost"].ToString();
-        inventory.text = keyMapping["Inventory"].ToString();
-        swap.text = keyMapping["Swap"].ToString();
-        miniMap.text = keyMapping["MiniMap"].ToString();
+        if (isWebGL)
+        {
+            forward.text = keyMapping["Forward"].ToString();
+            backward.text = keyMapping["Backward"].ToString();
+            left.text = keyMapping["Left"].ToString();
+            right.text = keyMapping["Right"].ToString();
+            jump.text = keyMapping["Jump"].ToString();
+            pause.text = keyMapping["Pause"].ToString();
+            boost.text = keyMapping["Boost"].ToString();
+            inventory.text = keyMapping["Inventory"].ToString();
+            swap.text = keyMapping["Swap"].ToString();
+            miniMap.text = keyMapping["MiniMap"].ToString();
+        }
     }
 
     public void LoadCurrentOptions() {
@@ -182,25 +193,30 @@ public class OptionsMenu : MonoBehaviour
         musicSlider.value = currentOptions.musicVolume;
         soundSlider.value = currentOptions.soundVolume;
 
-        keyMapping["Forward"] = currentOptions.forwardKey;
-        keyMapping["Backward"] = currentOptions.backwardKey;
-        keyMapping["Left"] = currentOptions.leftKey;
-        keyMapping["Right"] = currentOptions.rightKey;
-        keyMapping["Jump"] = currentOptions.jumpKey;
-        keyMapping["Pause"] = currentOptions.pauseKey;
-        keyMapping["Boost"] = currentOptions.boostKey;
-        keyMapping["Inventory"] = currentOptions.inventoryKey;
-        keyMapping["Swap"] = currentOptions.swapKey;
-        keyMapping["MiniMap"] = currentOptions.miniMapKey;
+        if (isWebGL)
+        {
+            keyMapping["Forward"] = currentOptions.forwardKey;
+            keyMapping["Backward"] = currentOptions.backwardKey;
+            keyMapping["Left"] = currentOptions.leftKey;
+            keyMapping["Right"] = currentOptions.rightKey;
+            keyMapping["Jump"] = currentOptions.jumpKey;
+            keyMapping["Pause"] = currentOptions.pauseKey;
+            keyMapping["Boost"] = currentOptions.boostKey;
+            keyMapping["Inventory"] = currentOptions.inventoryKey;
+            keyMapping["Swap"] = currentOptions.swapKey;
+            keyMapping["MiniMap"] = currentOptions.miniMapKey;
 
-        UpdateKeyControlText();
+            UpdateKeyControlText();
 
-        if (gameController) {
-            gameController.LoadCurrentOptions();
+            if (player) 
+            {
+                player.LoadCurrentOptions();
+            }
         }
 
-        if (player) {
-            player.LoadCurrentOptions();
+        if (gameController)
+        {
+            gameController.LoadCurrentOptions();
         }
     }
 
@@ -211,17 +227,20 @@ public class OptionsMenu : MonoBehaviour
         musicSlider.value = 0;
         soundSlider.value = 0;
 
-        // Reset Keyboard Controls Settings
-        currentOptions.forwardKey = defaultOptions.forwardKey;
-        currentOptions.backwardKey = defaultOptions.backwardKey;
-        currentOptions.leftKey = defaultOptions.leftKey;
-        currentOptions.rightKey = defaultOptions.rightKey;
-        currentOptions.jumpKey = defaultOptions.jumpKey;
-        currentOptions.pauseKey = defaultOptions.pauseKey;
-        currentOptions.boostKey = defaultOptions.boostKey;
-        currentOptions.inventoryKey = defaultOptions.inventoryKey;
-        currentOptions.swapKey = defaultOptions.swapKey;
-        currentOptions.miniMapKey = defaultOptions.miniMapKey;
+        if (isWebGL)
+        {
+            // Reset Keyboard Controls Settings
+            currentOptions.forwardKey = defaultOptions.forwardKey;
+            currentOptions.backwardKey = defaultOptions.backwardKey;
+            currentOptions.leftKey = defaultOptions.leftKey;
+            currentOptions.rightKey = defaultOptions.rightKey;
+            currentOptions.jumpKey = defaultOptions.jumpKey;
+            currentOptions.pauseKey = defaultOptions.pauseKey;
+            currentOptions.boostKey = defaultOptions.boostKey;
+            currentOptions.inventoryKey = defaultOptions.inventoryKey;
+            currentOptions.swapKey = defaultOptions.swapKey;
+            currentOptions.miniMapKey = defaultOptions.miniMapKey;
+        }
         
         // Reset Mouse Controls Settings
         invertXState = false;
