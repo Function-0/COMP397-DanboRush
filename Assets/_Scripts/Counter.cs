@@ -6,7 +6,7 @@ using TMPro;
 public class Counter : MonoBehaviour
 {
     public TextMeshProUGUI textMesh;
-    private int score = 0;
+    public int score = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +23,10 @@ public class Counter : MonoBehaviour
     {
         score += count;
         textMesh.text = score.ToString() + "/5";
+    }
+
+    public void SetEnvelopeValue(int count)
+    {
+        textMesh.text = count.ToString() + "/5";
     }
 }

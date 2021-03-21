@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-19 21:22:37
+ * @Last Modified time: 2021-03-21 06:23:33
  */
 using System;
 using System.Collections;
@@ -58,6 +58,7 @@ public class GameController : MonoBehaviour
     public Countdown gameTime;
     public ScoreController gameScore;
     public CoinScript coin;
+    public Counter envelope;
 
     private int messageTimer = 0;
     private int messageTimeOut = 400;
@@ -69,6 +70,7 @@ public class GameController : MonoBehaviour
         gameTime = FindObjectOfType<Countdown>();
         gameScore = FindObjectOfType<ScoreController>();
         coin = FindObjectOfType<CoinScript>();
+        envelope = FindObjectOfType<Counter>();
 
         // Load the game from the MainMenu scene
         if (PlayerPrefs.HasKey("LoadGame"))
@@ -230,6 +232,7 @@ public class GameController : MonoBehaviour
         sceneData.time = Mathf.Round(gameTime.timeStart);
         sceneData.score = gameScore.score;
         sceneData.coin = coin.currentCoin;
+        sceneData.envelope = envelope.score;
 
         ShowSaveMessage();
         PopulateSaveLoadMenu();
@@ -275,6 +278,8 @@ public class GameController : MonoBehaviour
         gameScore.score = sceneData.score;
         coin.currentCoin = sceneData.coin;
         coin.SetCoinBarValue(sceneData.coin);
+        envelope.score = sceneData.envelope;
+        envelope.SetEnvelopeValue(sceneData.envelope);
         
         if (isPaused) {
             Resume();
