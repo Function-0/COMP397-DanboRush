@@ -14,6 +14,7 @@ public class GunController : MonoBehaviour
 
     public AudioSource bullet_sound;
 
+    private bool isWebGL = false;
 
     private void Start()
     {
@@ -23,14 +24,14 @@ public class GunController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (isWebGL && Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
         bullet_sound.Play();
         muzzleFlash.Play();

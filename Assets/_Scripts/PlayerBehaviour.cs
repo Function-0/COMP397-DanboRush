@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [Header("Controls")]
+    public Joystick joystick;
+    public float horizontalSensitivity;
+    public float verticalSensitivity;
+
     public CharacterController controller;
     public float maxSpeed = 3000.0f;
     public float gravity = -70.0f;
@@ -19,8 +24,6 @@ public class PlayerBehaviour : MonoBehaviour
     private float jumpForce = 5f;
 
     public GameObject fire;
-
-    public PlayerBehaviour playerBehaviour;
 
     public GameObject bulletPrefab;
     public Camera playerCamera;
@@ -43,6 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
     public KeyCode swapKey;
 
     public GameController gameController;
+    private bool isWebGL = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,56 +67,79 @@ public class PlayerBehaviour : MonoBehaviour
             velocity.y = -2.0f;
         }
 
-        // Move forward
-        if(Input.GetKey(forwardKey))
+        if (isWebGL)
         {
-            Vector3 move = transform.forward;
-            controller.Move(move * maxSpeed * Time.deltaTime);
-        }
+            // Move forward
+            if(Input.GetKey(forwardKey))
+            {
+                Vector3 move = transform.forward;
+                controller.Move(move * maxSpeed * Time.deltaTime);
+            }
 
-        // Move backward
-        if(Input.GetKey(backwardKey))
-        {
-            Vector3 move = transform.forward * -1;
-            controller.Move(move * maxSpeed * Time.deltaTime);
-        }
+            // Move backward
+            if(Input.GetKey(backwardKey))
+            {
+                Vector3 move = transform.forward * -1;
+                controller.Move(move * maxSpeed * Time.deltaTime);
+            }
 
-        // Move left
-        if(Input.GetKey(leftKey))
-        {
-            Vector3 move = transform.right * -1;
-            controller.Move(move * maxSpeed * Time.deltaTime);
-        }
+            // Move left
+            if(Input.GetKey(leftKey))
+            {
+                Vector3 move = transform.right * -1;
+                controller.Move(move * maxSpeed * Time.deltaTime);
+            }
 
-        // Move right
-        if(Input.GetKey(rightKey))
-        {
-            Vector3 move = transform.right;
-            controller.Move(move * maxSpeed * Time.deltaTime);
-        }
+            // Move right
+            if(Input.GetKey(rightKey))
+            {
+                Vector3 move = transform.right;
+                controller.Move(move * maxSpeed * Time.deltaTime);
+            }
 
-        // Jump
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+            // Jump
+            if (Input.GetKeyDown(jumpKey) && isGrounded)
+            {
+                Jump();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Fire();
+            }
+        }
+        else
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            float x = joystick.Horizontal;
+            float z = joystick.Vertical;
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * maxSpeed * Time.deltaTime);
         }
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject bulletObject = Instantiate(bulletPrefab);
-            bulletObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * -20 + playerCamera.transform.up * -2 + playerCamera.transform.right * -3;
-            bulletObject.transform.forward = playerCamera.transform.forward;
-        }
-
         // player fell outside of the game map
         if (transform.position.y < 0.0f)
         {
             TakeDamage(100);
         }
+    }
+
+    public void Jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+    }
+
+    public void Fire()
+    {
+        GameObject bulletObject = Instantiate(bulletPrefab);
+        bulletObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * -20 + playerCamera.transform.up * -2 + playerCamera.transform.right * -3;
+        bulletObject.transform.forward = playerCamera.transform.forward;
+
+        GunController gun = FindObjectOfType<GunController>();
+        gun.Shoot();
     }
 
     void OnDrawGizmos()
