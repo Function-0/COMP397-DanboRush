@@ -33,6 +33,10 @@ public class Enemy : MonoBehaviour
 
 	public HealthBarScreenSpaceController healthBar;
 
+	public delegate void EnemyKilled();
+
+	public static event EnemyKilled OnEnemyKilled;
+
 	void Start()
 	{
 		player = GameObject.Find("Amazon danbo");
@@ -95,6 +99,11 @@ public class Enemy : MonoBehaviour
 			Die();
 			FindObjectOfType<Countdown>().AddTime(5);
 			FindObjectOfType<ScoreController>().AddScore(100);
+			OnEnemyKilled();
+		}
+		if (OnEnemyKilled != null)
+		{
+			OnEnemyKilled();
 		}
 
 	}

@@ -500,7 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 20
   boxPrefab: {fileID: 3391879111512731354, guid: 9826126c0e0da5f48bc530eb0b716ae2, type: 3}
-  health: 50
+  health: 100
   shootingDistance: 10
   fireRate: 1
   range: 100

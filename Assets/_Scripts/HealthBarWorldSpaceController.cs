@@ -8,7 +8,7 @@ public class HealthBarWorldSpaceController : MonoBehaviour
 
     void Start()
     {
-    //    playerCamera = GameObject.Find("PlayerCamera").transform;
+        playerCamera = GameObject.Find("Main Camera").transform;
     }
 
 
