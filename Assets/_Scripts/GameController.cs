@@ -151,7 +151,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         LoadCurrentOptions();
         ToggleScripts();
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PlayClickSoundEffect()
@@ -168,7 +168,7 @@ public class GameController : MonoBehaviour
         loadMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
 
         ToggleScripts();
     }
@@ -528,7 +528,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         LoadCurrentOptions();
         ToggleScripts();
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PlayClickSoundEffect()
@@ -545,7 +545,7 @@ public class GameController : MonoBehaviour
         loadMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         
         ToggleScripts();
     }
