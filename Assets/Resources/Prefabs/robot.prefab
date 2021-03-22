@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 3286420736395315617}
   - component: {fileID: 3286420736395315618}
   - component: {fileID: 3286420736395315619}
-  - component: {fileID: 3135392393548980087}
   m_Layer: 3
   m_Name: robot
   m_TagString: Untagged
@@ -209,26 +208,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 20
   boxPrefab: {fileID: 3391879111512731354, guid: 9826126c0e0da5f48bc530eb0b716ae2, type: 3}
-  health: 50
+  health: 100
   shootingDistance: 10
-  shoot: 0
   fireRate: 1
+  range: 100
   speed: 3
   obstacleRange: 5
   healthBar: {fileID: 6280949232946895834}
---- !u!114 &3135392393548980087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3286420736395315628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab23c713c870d24489615e81e7e9b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!1 &4279470389028032659
 GameObject:
   m_ObjectHideFlags: 0

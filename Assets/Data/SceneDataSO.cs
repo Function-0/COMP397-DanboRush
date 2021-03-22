@@ -23,5 +23,11 @@ public class SceneDataSO : ScriptableObject
     public float coin;
     public int envelope;
     public string lastModifiedDate;
+
+    [Header("Enemy Data")]
+    public Enemy[] enemyNumber;
+    public Vector3 enemyPosition;
+    public Quaternion enemyRotation;
+    public float enemyHealth;
 }
 

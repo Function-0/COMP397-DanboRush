@@ -33,7 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Player Abilities")]
     [Range(0, 100)]
-    public float health = 100;
+    public float health = 100f;
 
     [Header("Input Options")]
     public OptionsSO currentOptions;

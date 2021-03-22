@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
 {
 	public float lookRadius = 10f;
 	public GameObject boxPrefab;
-	public float health = 100f; // enemy hp
+	[Range(0, 100)]
+	public float health = 100f;
 	public float shootingDistance = 10f;
 
 	public float fireRate = 1f;
@@ -90,10 +91,12 @@ public class Enemy : MonoBehaviour
 		healthBar.TakeDamage(amount);
 		if (health <= 0f)
 		{
+			health = 0f;
 			Die();
 			FindObjectOfType<Countdown>().AddTime(5);
 			FindObjectOfType<ScoreController>().AddScore(100);
 		}
+
 	}
 
 	void Die()

@@ -8,6 +8,7 @@ public class GunController : MonoBehaviour
     public float range = 8000f;
     public float fireRate = 5f;
 
+
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
     private float nextTimeToFire = 0f;
@@ -44,10 +45,11 @@ public class GunController : MonoBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
+
                 target.TakeDamage(damage);
             }
 
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);

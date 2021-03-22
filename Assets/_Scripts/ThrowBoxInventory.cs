@@ -21,6 +21,7 @@ public class ThrowBoxInventory : MonoBehaviour
     public void counter(int count)
     {
         quantity += count;
-        textMesh.text = quantity.ToString();
+        textMesh.text = quantity.ToString()
+            ;
     }
 }

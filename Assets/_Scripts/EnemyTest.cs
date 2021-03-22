@@ -7,8 +7,11 @@ public class EnemyTest : MonoBehaviour
 {
 	public float lookRadius = 10f;
 	public GameObject boxPrefab;
-	public float health = 100f; // enemy hp
+	[Range(0, 100)]
+	 public float health = 100f;
 	public float shootingDistance = 10f;
+
+	//public float finalHealth = 0f;
 
 	public float fireRate = 1f;
 	private float nextTimeToFire = 0f;
@@ -38,20 +41,20 @@ public class EnemyTest : MonoBehaviour
 		target = player.transform;
 		agent = GetComponent<NavMeshAgent>();
 		//playerBehaviour = FindObjectOfType<PlayerBehaviour>();
-		
+
 	}
 
 	void Update()
 	{
 		// Get the distance to the player
-	    distance = Vector3.Distance(target.position, transform.position);
+		distance = Vector3.Distance(target.position, transform.position);
 
 		// If inside the radius
 		if (distance <= lookRadius)
 		{
 			// Move towards the player
 			agent.SetDestination(target.position);
-        }
+		}
 
 		if (distance <= shootingDistance && Time.time >= nextTimeToFire)
 		{
@@ -62,10 +65,12 @@ public class EnemyTest : MonoBehaviour
 			shoot();
 		}
 
+		//finalHealth = health;
+
 	}
 
 	void shoot()
-    {
+	{
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, transform.forward, out hit, range))
 		{
@@ -87,12 +92,19 @@ public class EnemyTest : MonoBehaviour
 	public void TakeDamage(float amount)
 	{
 		health -= amount;
+		//finalHealth = health;
 		healthBar.TakeDamage(amount);
 		if (health <= 0f)
 		{
+			health = 0f;
 			Die();
+			FindObjectOfType<Countdown>().AddTime(5);
+			FindObjectOfType<ScoreController>().AddScore(100);
 		}
+		
 	}
+
+	    
 
 	void Die()
 	{

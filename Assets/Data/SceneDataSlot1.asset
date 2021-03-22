@@ -12,11 +12,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f763d9704e7322446aada0e4d4b1007f, type: 3}
   m_Name: SceneDataSlot1
   m_EditorClassIdentifier: 
-  playerPosition: {x: 0, y: 0, z: 0}
-  playerRotation: {x: 0, y: 0, z: 0, w: 0}
-  playerHealth: 0
-  time: 0
-  score: 0
-  coin: 0
-  envelope: 0
-  lastModifiedDate: 
+  playerPosition: {x: -23.723589, y: 1.0799999, z: 138.54129}
+  playerRotation: {x: -0.0073719732, y: 0.9591968, z: 0.025117429, w: -0.28152496}
+  playerHealth: 40
+  time: 20
+  score: 100
+  coin: 40
+  envelope: 1
+  lastModifiedDate: 2021-03-21 5:49:38 PM
+  enemyNumber:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyPosition: {x: -41.95537, y: 0.04166621, z: 110.39353}
+  enemyRotation: {x: -0, y: 0.026444148, z: -0, w: 0.99965036}
+  enemyHealth: 100

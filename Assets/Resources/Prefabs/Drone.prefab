@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6788098471654214987}
   - component: {fileID: 6788098471654214986}
   - component: {fileID: 6788098471654214981}
-  - component: {fileID: 6788098471654214980}
   m_Layer: 3
   m_Name: Drone
   m_TagString: Untagged
@@ -122,26 +121,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 10
   boxPrefab: {fileID: 3391879111512731354, guid: 9826126c0e0da5f48bc530eb0b716ae2, type: 3}
-  health: 50
+  health: 100
   shootingDistance: 10
   fireRate: 1
   range: 100
   speed: 3
   obstacleRange: 5
   healthBar: {fileID: 5324731830884071374}
---- !u!114 &6788098471654214980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788098471654214982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab23c713c870d24489615e81e7e9b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!1 &6788098471756613300
 GameObject:
   m_ObjectHideFlags: 0
