@@ -7,10 +7,14 @@ public class PlayerThrowBox : MonoBehaviour
     private int count = 1;
     public ThrowBoxInventory throwBoxInventory;
 
+    public InventoryController inventoryController;
+
+    private int hitpoints = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        inventoryController = FindObjectOfType<InventoryController>();
     }
 
     // Update is called once per frame
@@ -23,7 +27,14 @@ public class PlayerThrowBox : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            throwBoxInventory.counter(count);
+            hitpoints --; // to prevent triggered twice
+            if (hitpoints > -1)
+            {
+                Debug.Log("Pick up a box!");
+                inventoryController.AddItem( new InventoryItem {type = InventoryItem.Type.Box, quantity = 1} );
+                throwBoxInventory.counter(count);
+            }
+            
             Destroy(gameObject);
         }
     }
