@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-19 14:50:01 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-19 18:53:04
+ * @Last Modified time: 2021-04-04 21:41:51
  */
  using System;
 using System.Collections;
@@ -22,6 +22,7 @@ public class SceneDataSO : ScriptableObject
     public float score;
     public float coin;
     public int envelope;
+    public int inventoryQuantity;
     public string lastModifiedDate;
 
     [Header("Enemy Data")]

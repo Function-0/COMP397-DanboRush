@@ -1,9 +1,8 @@
-
 /*
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-03-21 06:23:33
+ * @Last Modified time: 2021-04-04 21:41:08
  */
 
 using System;
@@ -64,6 +63,7 @@ public class GameController : MonoBehaviour
     public ScoreController gameScore;
     public CoinScript coin;
     public Counter envelope;
+    public InventoryController inventoryController;
 
     private int messageTimer = 0;
     private int messageTimeOut = 400;
@@ -76,6 +76,7 @@ public class GameController : MonoBehaviour
         gameScore = FindObjectOfType<ScoreController>();
         coin = FindObjectOfType<CoinScript>();
         envelope = FindObjectOfType<Counter>();
+        inventoryController = FindObjectOfType<InventoryController>();
         enemy = FindObjectOfType<EnemyTest>();
 
         // Load the game from the MainMenu scene
@@ -242,6 +243,7 @@ public class GameController : MonoBehaviour
         sceneData.score = gameScore.score;
         sceneData.coin = coin.currentCoin;
         sceneData.envelope = envelope.score;
+        sceneData.inventoryQuantity = inventoryController.inventoryList.Count;
 
         sceneData.enemyPosition = enemy.transform.position;
         sceneData.enemyRotation = enemy.transform.rotation;
@@ -313,7 +315,7 @@ public class GameController : MonoBehaviour
         coin.SetCoinBarValue(sceneData.coin);
         envelope.score = sceneData.envelope;
         envelope.SetEnvelopeValue(sceneData.envelope);
-
+        inventoryController.LoadInventoryItems(sceneData.inventoryQuantity);
 
         if (isPaused)
         {

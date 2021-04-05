@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-04-04 12:23:28 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-04-04 20:48:16
+ * @Last Modified time: 2021-04-04 21:41:48
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -82,6 +82,16 @@ public class InventoryController : MonoBehaviour
         GameObject boxObject = Instantiate(boxPrefab, player.transform);
         boxObject.transform.position = player.transform.position;
         boxObject.transform.forward = player.transform.forward;
+    }
+
+    public void LoadInventoryItems(int itemNum)
+    {
+        inventoryList.Clear();
+        for (int i = 0; i < itemNum; i++)
+        {
+            inventoryList.Add( new InventoryItem {type = InventoryItem.Type.Box, quantity = 1} );
+        }
+        RefreshInventorySlot();
     }
 }
 
