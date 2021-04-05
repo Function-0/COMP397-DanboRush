@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 95964531805101434}
   - component: {fileID: 110272117}
   - component: {fileID: 110272121}
+  - component: {fileID: 6521864933868612349}
   m_Layer: 3
   m_Name: chest_wooden
   m_TagString: Untagged
@@ -380,6 +381,25 @@ MonoBehaviour:
   health: {fileID: 0}
   scoreController: {fileID: 0}
   Sound: {fileID: 7938939907309843617}
+--- !u!114 &6521864933868612349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544191852190126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf9db670c1df4bb2843b82560ce5409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 9abce3e87c5b94d899d1dbbdc1b9a2ff, type: 3}
+  size: {x: 20, y: 20}
+  rotateWithObject: 0
+  upAxis: {x: 0, y: 1, z: 0}
+  initialIconRotation: 0
+  clampIconInBorder: 1
+  clampDistance: 100
 --- !u!1 &1632052825836748
 GameObject:
   m_ObjectHideFlags: 0
