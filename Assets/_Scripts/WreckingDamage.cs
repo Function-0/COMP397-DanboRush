@@ -12,7 +12,7 @@ public class WreckingDamage : MonoBehaviour
 	AudioSource wreckingSound;
 	public bool alreadyPlayed = false;
 
-	private float damage = 5f;
+	private float damage = 10f;
 
 	public float fireRate = 1f;
 	private float nextTimeToFire = 0f;
