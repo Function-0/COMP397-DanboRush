@@ -6,7 +6,6 @@ public class PlayerThrowBox : MonoBehaviour
 {
     private int count = 1;
     public ThrowBoxInventory throwBoxInventory;
-
     public InventoryController inventoryController;
 
     private int hitpoints = 1;
@@ -30,9 +29,8 @@ public class PlayerThrowBox : MonoBehaviour
             hitpoints --; // to prevent triggered twice
             if (hitpoints > -1)
             {
-                Debug.Log("Pick up a box!");
                 inventoryController.AddItem( new InventoryItem {type = InventoryItem.Type.Box, quantity = 1} );
-                throwBoxInventory.counter(count);
+                // throwBoxInventory.counter(count);
             }
             
             Destroy(gameObject);
