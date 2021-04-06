@@ -7,10 +7,9 @@ public class GunController : MonoBehaviour
     public float damage = 10f;
     public float range = 8000f;
     public float fireRate = 5f;
-
+    public ParticleSystem spark;
 
     public Camera fpsCam;
-    public ParticleSystem muzzleFlash;
     private float nextTimeToFire = 0f;
 
     public AudioSource bullet_sound;
@@ -35,8 +34,7 @@ public class GunController : MonoBehaviour
     public void Shoot()
     {
         bullet_sound.Play();
-        muzzleFlash.Play();
-
+        spark.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
@@ -45,13 +43,14 @@ public class GunController : MonoBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-
+                
                 target.TakeDamage(damage);
             }
 
             EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
             if (enemy != null)
             {
+                
                 enemy.TakeDamage(damage);
             }
         }

@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 110272121}
   - component: {fileID: 6521864933868612349}
   m_Layer: 3
-  m_Name: chest_wooden
+  m_Name: chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
