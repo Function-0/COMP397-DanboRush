@@ -16,7 +16,7 @@ public class ScoreController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textBox.text = "Score: " + score.ToString();
+        textBox.text = "Score: " + Mathf.Round(score).ToString();
     }
 
     public void AddScore(float score)

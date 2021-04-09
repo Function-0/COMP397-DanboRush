@@ -11,6 +11,6 @@ public class FinalScoreController : MonoBehaviour
     void Start()
     {
         finalScore = PlayerPrefs.GetFloat("score");
-        textBox.text = finalScore.ToString();
+        textBox.text = Mathf.Round(finalScore).ToString();
     }
 }
