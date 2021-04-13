@@ -2,7 +2,7 @@
  * @Author: Tzu-Ting Wu 
  * @Date: 2021-03-07 14:53:38 
  * @Last Modified by: Tzu-Ting Wu
- * @Last Modified time: 2021-04-04 21:41:08
+ * @Last Modified time: 2021-04-13 00:28:55
  */
 
 using System;
@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOverMenu;
     public GameObject saveMenu;
     public GameObject loadMenu;
+    public GameObject achievementsMenu;
 
     [Header("Save/Load Slots")]
     public TextMeshProUGUI saveSlot1;
@@ -348,6 +349,16 @@ public class GameController : MonoBehaviour
     {
         PlayClickSoundEffect();
         optionsMenu.SetActive(!optionsMenu.activeInHierarchy);
+    }
+
+    public void ToggleAchievementsMenu()
+    {
+        PlayClickSoundEffect();
+        achievementsMenu.SetActive(!achievementsMenu.activeInHierarchy);
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+        Cursor.lockState = CursorLockMode.None;
+        ToggleScripts();
     }
 
     public void MainMenu()

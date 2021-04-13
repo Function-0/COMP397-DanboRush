@@ -48,6 +48,10 @@ public class PlayerBehaviour : MonoBehaviour
     public GameController gameController;
     private bool isWebGL = false;
 
+    // Observer Pattern - Observable(Subject)
+	public delegate void FireDelegate();
+	public static event FireDelegate FireEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,6 +138,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Fire()
     {
+        if (FireEvent != null)
+		{
+			FireEvent();
+		}
         GameObject bulletObject = Instantiate(bulletPrefab);
         bulletObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * -20 + playerCamera.transform.up * -2 + playerCamera.transform.right * -3;
         bulletObject.transform.forward = playerCamera.transform.forward;
@@ -157,6 +165,12 @@ public class PlayerBehaviour : MonoBehaviour
             health = 0;
             gameController.GameOver();
         }
+    }
+
+    public void Heal(float heal)
+    {
+        health += heal;
+        healthBar.SetHealthValue(health);
     }
 
     // Detect collider

@@ -10,6 +10,11 @@ public class PlayerThrowBox : MonoBehaviour
 
     private int hitpoints = 1;
 
+    
+    // Observer Pattern - Observable(Subject)
+	public delegate void BoxPickedUp();
+	public static event BoxPickedUp BoxPickedUpEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +35,10 @@ public class PlayerThrowBox : MonoBehaviour
             if (hitpoints > -1)
             {
                 inventoryController.AddItem( new InventoryItem {type = InventoryItem.Type.Box, quantity = 1} );
+                if (BoxPickedUpEvent != null)
+                {
+                    BoxPickedUpEvent();
+                }
                 // throwBoxInventory.counter(count);
             }
             

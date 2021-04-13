@@ -35,6 +35,10 @@ public class EnemyTest : MonoBehaviour
 
 	public HealthBarScreenSpaceController healthBar;
 
+	// Observer Pattern - Observable(Subject)
+	public delegate void EnemyKilled();
+	public static event EnemyKilled EnemyKilledEvent;
+
 	void Start()
 	{
 		player = GameObject.Find("Amazon danbo");
@@ -108,6 +112,10 @@ public class EnemyTest : MonoBehaviour
 
 	void Die()
 	{
+		if (EnemyKilledEvent != null)
+		{
+			EnemyKilledEvent();
+		}
 		Destroy(gameObject);
 	}
 }
