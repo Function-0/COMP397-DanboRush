@@ -22,12 +22,17 @@ public class InventoryController : MonoBehaviour
     public PlayerBehaviour player;
     public GameObject boxPrefab;
 
+    private Camera fpsCam;
+    private float boxDamage = 20f;
+    private float boxRange = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
         inventoryList = new List<InventoryItem>();
         ResetInventorySlotStates();
         player = FindObjectOfType<PlayerBehaviour>();
+        fpsCam = player.playerCamera;
     }
 
     // Update is called once per frame
@@ -82,6 +87,26 @@ public class InventoryController : MonoBehaviour
         GameObject boxObject = Instantiate(boxPrefab, player.transform);
         boxObject.transform.position = player.transform.position;
         boxObject.transform.forward = player.transform.forward;
+        BoxDamage();
+    }
+
+    private void BoxDamage()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, boxRange))
+        {
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.TakeDamage(boxDamage);
+            }
+
+            EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(boxDamage);
+            }
+        }
     }
 
     public void LoadInventoryItems(int itemNum)
