@@ -14,8 +14,6 @@ public class Enemy : MonoBehaviour
 	public float fireRate = 1f;
 	private float nextTimeToFire = 0f;
 
-	public AudioSource shoot_sound;
-
 	Transform target;
 	NavMeshAgent agent;
 
@@ -45,8 +43,6 @@ public class Enemy : MonoBehaviour
 		target = player.transform;
 		agent = GetComponent<NavMeshAgent>();
 		//playerBehaviour = FindObjectOfType<PlayerBehaviour>();
-		shoot_sound = GetComponent<AudioSource>();
-
 	}
 
 	void Update()
@@ -74,7 +70,6 @@ public class Enemy : MonoBehaviour
 
 	void shoot()
 	{
-		shoot_sound.Play();
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, transform.forward, out hit, range))
 		{

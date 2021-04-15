@@ -52,6 +52,9 @@ public class PlayerBehaviour : MonoBehaviour
 	public delegate void FireDelegate();
 	public static event FireDelegate FireEvent;
 
+    [Header("Sound Effects")]
+    public AudioClip takeDamageSoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -158,6 +161,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        GetComponent<AudioSource>().PlayOneShot(takeDamageSoundEffect); // play sound effect
         health -= damage;
         healthBar.TakeDamage(damage);
         if (health < 0)
