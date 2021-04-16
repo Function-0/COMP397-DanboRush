@@ -89,4 +89,11 @@ public class MainMenu : MonoBehaviour
     {
         LoadGame(3);
     }
+
+    public void Tutorial()
+    {
+        SoundEffect();
+        PlayerPrefs.DeleteKey("LoadGame");
+        SceneManager.LoadScene("Tutorial");
+    }
 }
