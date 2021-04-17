@@ -52,12 +52,14 @@ public class AchievementsController : MonoBehaviour
 
     private void UpdateAchievementUI(GameObject achievementObject, int number)
     {
-        Transform progressBar = achievementObject.transform.Find("ProgressBar");
-        Slider slider = progressBar.GetComponent<Slider>();
-        TextMeshProUGUI progressText = progressBar.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
-        slider.value += number;
-        Debug.Log("Fire Count ===========" + slider.value);
-        progressText.text = slider.value.ToString() + "/" + slider.maxValue;
+        if (achievementObject != null)
+        {
+            Transform progressBar = achievementObject.transform.Find("ProgressBar");
+            Slider slider = progressBar.GetComponent<Slider>();
+            TextMeshProUGUI progressText = progressBar.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
+            slider.value += number;
+            progressText.text = slider.value.ToString() + "/" + slider.maxValue;
+        }
     }
 
     public void OnEnemyKilled()
